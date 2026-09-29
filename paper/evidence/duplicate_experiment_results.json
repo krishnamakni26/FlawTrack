@@ -1,0 +1,194 @@
+{
+  "pairScores": [
+    {
+      "id": "PAIR-TD-01",
+      "isDuplicate": true,
+      "description": "SQL Injection in /api/v1/users/login parameter email",
+      "score": 0.73
+    },
+    {
+      "id": "PAIR-TD-02",
+      "isDuplicate": true,
+      "description": "Reflected Cross-Site Scripting (XSS) in search query",
+      "score": 0.58
+    },
+    {
+      "id": "PAIR-TD-03",
+      "isDuplicate": true,
+      "description": "Remote Code Execution via Apache Commons Text template injection",
+      "score": 0.65
+    },
+    {
+      "id": "PAIR-TD-04",
+      "isDuplicate": true,
+      "description": "Server-Side Request Forgery (SSRF) in webhook URL validator",
+      "score": 0.44
+    },
+    {
+      "id": "PAIR-TD-05",
+      "isDuplicate": true,
+      "description": "IDOR in customer billing invoice download",
+      "score": 0.52
+    },
+    {
+      "id": "PAIR-TD-06",
+      "isDuplicate": true,
+      "description": "Path Traversal arbitrary file read in document viewer",
+      "score": 0.44
+    },
+    {
+      "id": "PAIR-TD-07",
+      "isDuplicate": true,
+      "description": "Missing CSRF token on email change endpoint",
+      "score": 0.58
+    },
+    {
+      "id": "PAIR-TD-08",
+      "isDuplicate": true,
+      "description": "Unrestricted file upload leading to web shell execution",
+      "score": 0.78
+    },
+    {
+      "id": "PAIR-TD-09",
+      "isDuplicate": true,
+      "description": "Spring4Shell DataBinder parameter binding RCE",
+      "score": 0.76
+    },
+    {
+      "id": "PAIR-TD-10",
+      "isDuplicate": true,
+      "description": "Broken JWT token validation allows signature stripping",
+      "score": 0.84
+    },
+    {
+      "id": "PAIR-TD-11",
+      "isDuplicate": true,
+      "description": "CORS Wildcard with Credentials Misconfiguration",
+      "score": 0.67
+    },
+    {
+      "id": "PAIR-TD-12",
+      "isDuplicate": true,
+      "description": "Hardcoded JWT Secret key in application configuration",
+      "score": 0.58
+    },
+    {
+      "id": "PAIR-TN-01",
+      "isDuplicate": false,
+      "description": "SQLi in Login vs SQLi in Reporting Export (Different endpoint and table)",
+      "score": 0.45
+    },
+    {
+      "id": "PAIR-TN-02",
+      "isDuplicate": false,
+      "description": "Reflected XSS in search vs Stored XSS in user profile comments",
+      "score": 0.37
+    },
+    {
+      "id": "PAIR-TN-03",
+      "isDuplicate": false,
+      "description": "Apache Commons Text RCE vs Log4j JNDI RCE",
+      "score": 0.23
+    },
+    {
+      "id": "PAIR-TN-04",
+      "isDuplicate": false,
+      "description": "SSRF via Webhook vs Open Redirect via login returnUrl",
+      "score": 0.02
+    },
+    {
+      "id": "PAIR-TN-05",
+      "isDuplicate": false,
+      "description": "IDOR in Invoices vs IDOR in Password Reset Token Retrieval",
+      "score": 0.3
+    },
+    {
+      "id": "PAIR-TN-06",
+      "isDuplicate": false,
+      "description": "Path Traversal in doc viewer vs Directory Listing enabled on Nginx",
+      "score": 0.14
+    },
+    {
+      "id": "PAIR-TN-07",
+      "isDuplicate": false,
+      "description": "CSRF on email change vs Rate Limiting missing on Login",
+      "score": 0.03
+    },
+    {
+      "id": "PAIR-TN-08",
+      "isDuplicate": false,
+      "description": "Avatar webshell upload vs CSV formula injection export",
+      "score": 0
+    },
+    {
+      "id": "PAIR-TN-09",
+      "isDuplicate": false,
+      "description": "Spring4Shell RCE vs Outdated jQuery Library",
+      "score": 0.05
+    },
+    {
+      "id": "PAIR-TN-10",
+      "isDuplicate": false,
+      "description": "JWT none algorithm bypass vs Session fixation in web cookie",
+      "score": 0.21
+    },
+    {
+      "id": "PAIR-TN-11",
+      "isDuplicate": false,
+      "description": "CORS wildcard with credentials vs Missing Content-Security-Policy",
+      "score": 0.28
+    },
+    {
+      "id": "PAIR-TN-12",
+      "isDuplicate": false,
+      "description": "Hardcoded JWT Secret vs Default SSH Root Password on VM image",
+      "score": 0.08
+    }
+  ],
+  "evaluationResults": [
+    {
+      "threshold": 0.6,
+      "tp": 6,
+      "fp": 0,
+      "tn": 12,
+      "fn": 6,
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.667,
+      "accuracy": 0.75
+    },
+    {
+      "threshold": 0.7,
+      "tp": 4,
+      "fp": 0,
+      "tn": 12,
+      "fn": 8,
+      "precision": 1,
+      "recall": 0.333,
+      "f1": 0.5,
+      "accuracy": 0.667
+    },
+    {
+      "threshold": 0.75,
+      "tp": 3,
+      "fp": 0,
+      "tn": 12,
+      "fn": 9,
+      "precision": 1,
+      "recall": 0.25,
+      "f1": 0.4,
+      "accuracy": 0.625
+    },
+    {
+      "threshold": 0.8,
+      "tp": 1,
+      "fp": 0,
+      "tn": 12,
+      "fn": 11,
+      "precision": 1,
+      "recall": 0.083,
+      "f1": 0.154,
+      "accuracy": 0.542
+    }
+  ]
+}

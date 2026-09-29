@@ -1,0 +1,88 @@
+{
+  "title": "CISA Known Exploited Vulnerabilities Catalog (Curated Snapshot)",
+  "catalogVersion": "2024.10.01",
+  "dateReleased": "2024-10-01T00:00:00.000Z",
+  "count": 12,
+  "vulnerabilities": [
+    {
+      "cveID": "CVE-2021-44228",
+      "vendorProject": "Apache",
+      "product": "Log4j",
+      "vulnerabilityName": "Apache Log4j Remote Code Execution Vulnerability",
+      "dateAdded": "2021-12-10",
+      "shortDescription": "Apache Log4j2 2.0-beta9 through 2.15.0 JNDI features do not protect against attacker controlled LDAP and other JNDI related endpoints.",
+      "requiredAction": "Apply vendor mitigation or upgrade to log4j 2.17.1 or later.",
+      "dueDate": "2021-12-24"
+    },
+    {
+      "cveID": "CVE-2023-34362",
+      "vendorProject": "Progress",
+      "product": "MOVEit Transfer",
+      "vulnerabilityName": "Progress MOVEit Transfer SQL Injection Vulnerability",
+      "dateAdded": "2023-06-02",
+      "shortDescription": "SQL injection vulnerability in MOVEit Transfer web application that could allow an unauthenticated attacker to gain access to database.",
+      "requiredAction": "Apply vendor updates immediately.",
+      "dueDate": "2023-06-16"
+    },
+    {
+      "cveID": "CVE-2024-3400",
+      "vendorProject": "Palo Alto Networks",
+      "product": "PAN-OS",
+      "vulnerabilityName": "Palo Alto Networks PAN-OS Command Injection Vulnerability",
+      "dateAdded": "2024-04-12",
+      "shortDescription": "A command injection vulnerability in GlobalProtect feature allows an unauthenticated attacker to execute arbitrary code with root privileges.",
+      "requiredAction": "Apply updates per vendor advisory.",
+      "dueDate": "2024-04-19"
+    },
+    {
+      "cveID": "CVE-2021-34527",
+      "vendorProject": "Microsoft",
+      "product": "Windows Print Spooler",
+      "vulnerabilityName": "Microsoft Windows Print Spooler Remote Code Execution Vulnerability",
+      "dateAdded": "2021-07-03",
+      "shortDescription": "PrintNightmare vulnerability in Windows Print Spooler service allows remote code execution with SYSTEM privileges.",
+      "requiredAction": "Apply security updates immediately.",
+      "dueDate": "2021-07-20"
+    },
+    {
+      "cveID": "CVE-2017-0144",
+      "vendorProject": "Microsoft",
+      "product": "Windows SMBv1",
+      "vulnerabilityName": "Microsoft Windows SMBv1 Remote Code Execution (EternalBlue)",
+      "dateAdded": "2021-11-03",
+      "shortDescription": "EternalBlue SMBv1 vulnerability allows remote code execution across unpatched systems.",
+      "requiredAction": "Apply MS17-010 or disable SMBv1.",
+      "dueDate": "2021-11-17"
+    },
+    {
+      "cveID": "CVE-2022-22965",
+      "vendorProject": "Spring",
+      "product": "Framework",
+      "vulnerabilityName": "Spring Framework Remote Code Execution (Spring4Shell)",
+      "dateAdded": "2022-04-04",
+      "shortDescription": "Spring MVC and Spring WebFlux applications running on JDK 9+ may be vulnerable to remote code execution via data binding.",
+      "requiredAction": "Upgrade to Spring Framework 5.3.18 / 5.2.20 or later.",
+      "dueDate": "2022-04-25"
+    },
+    {
+      "cveID": "CVE-2023-22515",
+      "vendorProject": "Atlassian",
+      "product": "Confluence Data Center and Server",
+      "vulnerabilityName": "Atlassian Confluence Broken Access Control Vulnerability",
+      "dateAdded": "2023-10-05",
+      "shortDescription": "Broken access control in Confluence Data Center and Server allows unauthenticated attacker to create unauthorized Confluence administrator accounts.",
+      "requiredAction": "Apply vendor updates immediately.",
+      "dueDate": "2023-10-12"
+    },
+    {
+      "cveID": "CVE-2023-46805",
+      "vendorProject": "Ivanti",
+      "product": "Connect Secure and Policy Secure",
+      "vulnerabilityName": "Ivanti Connect Secure Authentication Bypass",
+      "dateAdded": "2024-01-10",
+      "shortDescription": "Authentication bypass vulnerability in web component allows remote attacker to access restricted resources.",
+      "requiredAction": "Apply mitigation and patch.",
+      "dueDate": "2024-01-22"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" width="900" height="550" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <text x="450" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 7. Duplicate Detection Performance vs. Similarity Threshold</text>
+  <text x="450" y="60" text-anchor="middle" font-size="12" fill="#64748b">Empirical Evaluation on 24 Labeled Synthetic Cybersecurity Finding Pairs</text>
+
+  <!-- Plot Area: x: 120 to 800 (width 680), y: 100 to 440 (height 340) -->
+  <!-- X mapped: 0.55 -> 120, 0.60 -> 233, 0.70 -> 460, 0.75 -> 573, 0.80 -> 686, 0.85 -> 800 -->
+  <!-- Y mapped: 0.0 -> 440, 1.0 -> 100 (height 340, 1.0 = 340px) -->
+
+  <!-- Grid lines -->
+  <line x1="120" y1="440" x2="800" y2="440" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="120" y1="355" x2="800" y2="355" stroke="#f1f5f9" stroke-width="1"/>
+  <line x1="120" y1="270" x2="800" y2="270" stroke="#f1f5f9" stroke-width="1"/>
+  <line x1="120" y1="185" x2="800" y2="185" stroke="#f1f5f9" stroke-width="1"/>
+  <line x1="120" y1="100" x2="800" y2="100" stroke="#f1f5f9" stroke-width="1"/>
+  <line x1="120" y1="100" x2="120" y2="440" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Y axis ticks -->
+  <text x="105" y="445" text-anchor="end" font-size="11" fill="#64748b">0.00</text>
+  <text x="105" y="360" text-anchor="end" font-size="11" fill="#64748b">0.25</text>
+  <text x="105" y="275" text-anchor="end" font-size="11" fill="#64748b">0.50</text>
+  <text x="105" y="190" text-anchor="end" font-size="11" fill="#64748b">0.75</text>
+  <text x="105" y="105" text-anchor="end" font-size="11" fill="#64748b">1.00</text>
+  <text x="40" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155" transform="rotate(-90 40 270)">Metric Value (0.0 – 1.0)</text>
+
+  <!-- X axis ticks -->
+  <!-- 0.60: x = 233 -->
+  <line x1="233" y1="440" x2="233" y2="446" stroke="#475569" stroke-width="1.5"/>
+  <text x="233" y="465" text-anchor="middle" font-size="11" fill="#334155">0.60</text>
+
+  <!-- 0.70: x = 460 -->
+  <line x1="460" y1="440" x2="460" y2="446" stroke="#475569" stroke-width="1.5"/>
+  <text x="460" y="465" text-anchor="middle" font-size="11" fill="#334155">0.70</text>
+
+  <!-- 0.75: x = 573 (Operational Default) -->
+  <line x1="573" y1="440" x2="573" y2="446" stroke="#475569" stroke-width="1.5"/>
+  <text x="573" y="465" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f766e">0.75 (Default)</text>
+
+  <!-- 0.80: x = 686 -->
+  <line x1="686" y1="440" x2="686" y2="446" stroke="#475569" stroke-width="1.5"/>
+  <text x="686" y="465" text-anchor="middle" font-size="11" fill="#334155">0.80</text>
+
+  <text x="460" y="495" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">Cosine Similarity Threshold (θ)</text>
+
+  <!-- Precision Curve: constant 1.00 -> y = 100 -->
+  <polyline points="233,100 460,100 573,100 686,100" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="233" cy="100" r="5" fill="#2563eb"/>
+  <circle cx="460" cy="100" r="5" fill="#2563eb"/>
+  <circle cx="573" cy="100" r="5" fill="#2563eb"/>
+  <circle cx="686" cy="100" r="5" fill="#2563eb"/>
+
+  <!-- Recall Curve:
+       0.60: 0.500 -> y = 440 - 0.500*340 = 270
+       0.70: 0.333 -> y = 440 - 0.333*340 = 326.8
+       0.75: 0.250 -> y = 440 - 0.250*340 = 355
+       0.80: 0.083 -> y = 440 - 0.083*340 = 411.8
+  -->
+  <polyline points="233,270 460,326.8 573,355 686,411.8" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,3"/>
+  <circle cx="233" cy="270" r="5" fill="#dc2626"/>
+  <circle cx="460" cy="326.8" r="5" fill="#dc2626"/>
+  <circle cx="573" cy="355" r="5" fill="#dc2626"/>
+  <circle cx="686" cy="411.8" r="5" fill="#dc2626"/>
+
+  <!-- F1-Score Curve:
+       0.60: 0.667 -> y = 440 - 0.667*340 = 213.2
+       0.70: 0.500 -> y = 440 - 0.500*340 = 270
+       0.75: 0.400 -> y = 440 - 0.400*340 = 304
+       0.80: 0.154 -> y = 440 - 0.154*340 = 387.6
+  -->
+  <polyline points="233,213.2 460,270 573,304 686,387.6" fill="none" stroke="#10b981" stroke-width="3"/>
+  <circle cx="233" cy="213.2" r="5" fill="#10b981"/>
+  <circle cx="460" cy="270" r="5" fill="#10b981"/>
+  <circle cx="573" cy="304" r="5" fill="#10b981"/>
+  <circle cx="686" cy="387.6" r="5" fill="#10b981"/>
+
+  <!-- Operational Threshold Indicator Line -->
+  <line x1="573" y1="90" x2="573" y2="440" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="578" y="140" font-size="10" font-weight="bold" fill="#0f766e">Default θ = 0.75</text>
+  <text x="578" y="155" font-size="9" fill="#0f766e">Zero False Positives</text>
+
+  <!-- Legend -->
+  <g transform="translate(620, 100)">
+    <rect x="0" y="0" width="160" height="95" rx="5" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <line x1="15" y1="25" x2="45" y2="25" stroke="#2563eb" stroke-width="3"/>
+    <circle cx="30" cy="25" r="4" fill="#2563eb"/>
+    <text x="55" y="29" font-size="11" font-weight="bold" fill="#1e3a8a">Precision (1.00)</text>
+
+    <line x1="15" y1="50" x2="45" y2="50" stroke="#10b981" stroke-width="3"/>
+    <circle cx="30" cy="50" r="4" fill="#10b981"/>
+    <text x="55" y="54" font-size="11" font-weight="bold" fill="#065f46">F1-Score</text>
+
+    <line x1="15" y1="75" x2="45" y2="75" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,3"/>
+    <circle cx="30" cy="75" r="4" fill="#dc2626"/>
+    <text x="55" y="79" font-size="11" font-weight="bold" fill="#991b1b">Recall</text>
+  </g>
+</svg>

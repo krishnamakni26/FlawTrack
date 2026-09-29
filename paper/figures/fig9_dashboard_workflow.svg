@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <defs>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <text x="600" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 9. VulnTrack Operational Security Operations Dashboard &amp; Prioritization Console</text>
+
+  <!-- Browser Frame -->
+  <rect x="40" y="55" width="1120" height="600" rx="10" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Title bar -->
+  <circle cx="65" cy="75" r="5" fill="#ef4444"/>
+  <circle cx="82" cy="75" r="5" fill="#f59e0b"/>
+  <circle cx="99" cy="75" r="5" fill="#10b981"/>
+  <rect x="130" y="65" width="400" height="20" rx="4" fill="#1e293b"/>
+  <text x="140" y="79" font-size="11" fill="#94a3b8">https://vulntrack.internal/dashboard — SecOps Unified Console</text>
+
+  <!-- App Body -->
+  <rect x="42" y="95" width="1116" height="558" fill="#f8fafc"/>
+
+  <!-- Top Metric Cards -->
+  <g transform="translate(65, 110)">
+    <!-- Total Active -->
+    <rect x="0" y="0" width="240" height="90" rx="8" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)"/>
+    <text x="20" y="30" font-size="11" font-weight="bold" fill="#64748b">ACTIVE FINDINGS</text>
+    <text x="20" y="65" font-size="28" font-weight="bold" fill="#0f172a">142</text>
+    <text x="110" y="65" font-size="10" fill="#10b981">↓ 12% vs last week</text>
+
+    <!-- P1 Critical -->
+    <rect x="265" y="0" width="240" height="90" rx="8" fill="#ffffff" stroke="#fecaca" filter="url(#cardShadow)"/>
+    <text x="285" y="30" font-size="11" font-weight="bold" fill="#991b1b">P1 CRITICAL (SLA &lt; 24h)</text>
+    <text x="285" y="65" font-size="28" font-weight="bold" fill="#dc2626">8</text>
+    <text x="340" y="65" font-size="10" fill="#b91c1c">3 CISA KEV Exploited</text>
+
+    <!-- P2 High -->
+    <rect x="530" y="0" width="240" height="90" rx="8" fill="#ffffff" stroke="#fed7aa" filter="url(#cardShadow)"/>
+    <text x="550" y="30" font-size="11" font-weight="bold" fill="#9a3412">P2 HIGH (SLA &lt; 72h)</text>
+    <text x="550" y="65" font-size="28" font-weight="bold" fill="#ea580c">27</text>
+    <text x="615" y="65" font-size="10" fill="#c2410c">5 Floor Overrides</text>
+
+    <!-- Mean Time to Remediate -->
+    <rect x="795" y="0" width="260" height="90" rx="8" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)"/>
+    <text x="815" y="30" font-size="11" font-weight="bold" fill="#64748b">MTTR / SLA COMPLIANCE</text>
+    <text x="815" y="65" font-size="28" font-weight="bold" fill="#0f766e">94.6%</text>
+    <text x="915" y="65" font-size="10" fill="#0f766e">Avg P1 MTTR: 18.2h</text>
+  </g>
+
+  <!-- Left: Priority Distribution & SLA Status Radar -->
+  <g transform="translate(65, 220)">
+    <rect x="0" y="0" width="460" height="410" rx="8" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)"/>
+    <text x="20" y="30" font-size="13" font-weight="bold" fill="#0f172a">Live Queue Priority Breakdown</text>
+    <line x1="20" y1="45" x2="440" y2="45" stroke="#f1f5f9"/>
+
+    <!-- Bar 1: P1 -->
+    <text x="20" y="75" font-size="11" font-weight="bold" fill="#991b1b">P1 Critical (8)</text>
+    <rect x="130" y="62" width="280" height="18" rx="3" fill="#fee2e2"/>
+    <rect x="130" y="62" width="55" height="18" rx="3" fill="#ef4444"/>
+    <text x="420" y="76" font-size="10" fill="#64748b">5.6%</text>
+
+    <!-- Bar 2: P2 -->
+    <text x="20" y="115" font-size="11" font-weight="bold" fill="#9a3412">P2 High (27)</text>
+    <rect x="130" y="102" width="280" height="18" rx="3" fill="#ffedd5"/>
+    <rect x="130" y="102" width="115" height="18" rx="3" fill="#f97316"/>
+    <text x="420" y="116" font-size="10" fill="#64748b">19.0%</text>
+
+    <!-- Bar 3: P3 -->
+    <text x="20" y="155" font-size="11" font-weight="bold" fill="#854d0e">P3 Medium (63)</text>
+    <rect x="130" y="142" width="280" height="18" rx="3" fill="#fef9c3"/>
+    <rect x="130" y="142" width="200" height="18" rx="3" fill="#eab308"/>
+    <text x="420" y="156" font-size="10" fill="#64748b">44.4%</text>
+
+    <!-- Bar 4: P4 -->
+    <text x="20" y="195" font-size="11" font-weight="bold" fill="#334155">P4 Low (44)</text>
+    <rect x="130" y="182" width="280" height="18" rx="3" fill="#f1f5f9"/>
+    <rect x="130" y="182" width="150" height="18" rx="3" fill="#64748b"/>
+    <text x="420" y="196" font-size="10" fill="#64748b">31.0%</text>
+
+    <line x1="20" y1="225" x2="440" y2="225" stroke="#f1f5f9"/>
+    <text x="20" y="250" font-size="13" font-weight="bold" fill="#0f172a">Continuous Monitoring Feed</text>
+    <text x="20" y="275" font-size="10" fill="#64748b">• 02:00 UTC: Daily CISA KEV catalog sync completed (3 new CVEs added)</text>
+    <text x="20" y="295" font-size="10" fill="#64748b">• 02:05 UTC: FIRST.org EPSS scores refreshed across 142 active findings</text>
+    <text x="20" y="315" font-size="10" fill="#dc2626">• Dynamic Escalation: CVE-2023-34362 elevated P3 &#8594; P1 (In KEV on Prod)</text>
+    <text x="20" y="335" font-size="10" fill="#b45309">• SLA Warning: Finding VULN-2024-0019 reached 75% SLA threshold (18h elapsed)</text>
+    <text x="20" y="355" font-size="10" fill="#059669">• Duplicate Filter: 14 incoming submissions flagged as duplicates (θ ≥ 0.75)</text>
+    <text x="20" y="375" font-size="10" fill="#0f172a">• Reopen Tracker: 2 findings failed retest and reopened for patch revision</text>
+  </g>
+
+  <!-- Right: Active Prioritized Triage Queue -->
+  <g transform="translate(545, 220)">
+    <rect x="0" y="0" width="510" height="410" rx="8" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)"/>
+    <text x="20" y="30" font-size="13" font-weight="bold" fill="#0f172a">Triage &amp; Remediation Queue</text>
+    <line x1="20" y1="45" x2="490" y2="45" stroke="#f1f5f9"/>
+
+    <!-- Queue Header -->
+    <rect x="15" y="55" width="480" height="25" fill="#f8fafc"/>
+    <text x="25" y="72" font-size="10" font-weight="bold" fill="#64748b">FINDING</text>
+    <text x="180" y="72" font-size="10" font-weight="bold" fill="#64748b">ASSET / CONTEXT</text>
+    <text x="320" y="72" font-size="10" font-weight="bold" fill="#64748b">PRIORITY</text>
+    <text x="400" y="72" font-size="10" font-weight="bold" fill="#64748b">SLA REMAINING</text>
+
+    <!-- Item 1 -->
+    <rect x="15" y="85" width="480" height="50" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="25" y="105" font-size="11" font-weight="bold" fill="#0f172a">Auth Bypass in Gateway</text>
+    <text x="25" y="122" font-size="9" fill="#dc2626">CVE-2023-99991 | In KEV</text>
+    <text x="180" y="105" font-size="10" fill="#334155">API-Gateway-Prod</text>
+    <text x="180" y="122" font-size="9" fill="#059669">Internet Prod (5/5)</text>
+    <rect x="320" y="95" width="45" height="20" rx="3" fill="#fee2e2"/>
+    <text x="342" y="109" text-anchor="middle" font-size="10" font-weight="bold" fill="#991b1b">P1</text>
+    <text x="400" y="109" font-size="11" font-weight="bold" fill="#dc2626">5.8h (Warning)</text>
+
+    <!-- Item 2 -->
+    <rect x="15" y="140" width="480" height="50" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="25" y="160" font-size="11" font-weight="bold" fill="#0f172a">MOVEit Transfer SQLi</text>
+    <text x="25" y="177" font-size="9" fill="#dc2626">CVE-2023-34362 | EPSS 0.94</text>
+    <text x="180" y="160" font-size="10" fill="#334155">Customer-File-Transfer</text>
+    <text x="180" y="177" font-size="9" fill="#059669">Internet Prod (5/5)</text>
+    <rect x="320" y="150" width="45" height="20" rx="3" fill="#fee2e2"/>
+    <text x="342" y="164" text-anchor="middle" font-size="10" font-weight="bold" fill="#991b1b">P1</text>
+    <text x="400" y="164" font-size="11" font-weight="bold" fill="#0f766e">18.4h</text>
+
+    <!-- Item 3 -->
+    <rect x="15" y="195" width="480" height="50" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="25" y="215" font-size="11" font-weight="bold" fill="#0f172a">RCE in Dev Sandbox</text>
+    <text x="25" y="232" font-size="9" fill="#64748b">CVSS 9.8 | Non-KEV</text>
+    <text x="180" y="215" font-size="10" fill="#334155">Dev-Worker-Node-04</text>
+    <text x="180" y="232" font-size="9" fill="#64748b">Isolated Dev (1/5)</text>
+    <rect x="320" y="205" width="45" height="20" rx="3" fill="#ffedd5"/>
+    <text x="342" y="219" text-anchor="middle" font-size="10" font-weight="bold" fill="#9a3412">P2</text>
+    <text x="400" y="219" font-size="11" fill="#334155">48.2h</text>
+
+    <!-- Item 4 -->
+    <rect x="15" y="250" width="480" height="50" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="25" y="270" font-size="11" font-weight="bold" fill="#0f172a">Kernel Privilege Escalation</text>
+    <text x="25" y="287" font-size="9" fill="#64748b">CVSS 7.8 | Local exploit</text>
+    <text x="180" y="270" font-size="10" fill="#334155">Internal-Postgres-Replica</text>
+    <text x="180" y="287" font-size="9" fill="#334155">Internal Prod (4/5)</text>
+    <rect x="320" y="260" width="45" height="20" rx="3" fill="#fef9c3"/>
+    <text x="342" y="274" text-anchor="middle" font-size="10" font-weight="bold" fill="#854d0e">P3</text>
+    <text x="400" y="274" font-size="11" fill="#334155">142.0h</text>
+
+    <!-- Item 5 -->
+    <rect x="15" y="305" width="480" height="50" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="25" y="325" font-size="11" font-weight="bold" fill="#0f172a">Slowloris HTTP Flood DoS</text>
+    <text x="25" y="342" font-size="9" fill="#64748b">CVSS 3.5 | Non-KEV</text>
+    <text x="180" y="325" font-size="10" fill="#334155">Edge-Reverse-Proxy</text>
+    <text x="180" y="342" font-size="9" fill="#059669">Internet Prod (3/5)</text>
+    <rect x="320" y="315" width="45" height="20" rx="3" fill="#f1f5f9"/>
+    <text x="342" y="329" text-anchor="middle" font-size="10" font-weight="bold" fill="#475569">P4</text>
+    <text x="400" y="329" font-size="11" fill="#334155">680.5h</text>
+
+    <!-- Bottom Explanatory badge -->
+    <rect x="15" y="365" width="480" height="35" rx="5" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="25" y="387" font-size="10" font-weight="bold" fill="#15803d">Explainability Engine Active: Click any finding to inspect transparent factor breakdown &amp; overrides.</text>
+  </g>
+</svg>

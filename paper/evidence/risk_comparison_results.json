@@ -1,0 +1,174 @@
+[
+  {
+    "caseId": "CASE-1",
+    "description": "High CVSS RCE on offline test sandbox (Zero EPSS, Non-KEV)",
+    "cvssBase": 9.8,
+    "cvssOnlyPriority": "P1",
+    "epss": 0.015,
+    "inKev": false,
+    "assetCriticality": 1,
+    "environment": "development",
+    "internetFacing": false,
+    "vulnTrackScore": 30.7,
+    "vulnTrackPriority": "P2",
+    "overrides": [
+      "Floored at P2: CVSS >= 9.0 (Critical theoretical severity)"
+    ],
+    "breakdown": {
+      "cvssContribution": 29.4,
+      "epssContribution": 0.3,
+      "kevContribution": 0,
+      "assetContribution": 0,
+      "bizContribution": 0.5,
+      "expContribution": 0.5
+    },
+    "rankingDifference": "P1 -> P2",
+    "analysis": "Deprioritized (Avoids alert fatigue)"
+  },
+  {
+    "caseId": "CASE-2",
+    "description": "Moderate CVSS Auth Bypass on Prod Gateway (Active KEV, High EPSS)",
+    "cvssBase": 6.5,
+    "cvssOnlyPriority": "P3",
+    "epss": 0.885,
+    "inKev": true,
+    "assetCriticality": 5,
+    "environment": "production",
+    "internetFacing": true,
+    "vulnTrackScore": 87.2,
+    "vulnTrackPriority": "P1",
+    "overrides": [],
+    "breakdown": {
+      "cvssContribution": 19.5,
+      "epssContribution": 17.7,
+      "kevContribution": 20,
+      "assetContribution": 15,
+      "bizContribution": 10,
+      "expContribution": 5
+    },
+    "rankingDifference": "P3 -> P1",
+    "analysis": "Elevated (Threat/Asset risk)"
+  },
+  {
+    "caseId": "CASE-3",
+    "description": "Identical CVE-2023-34362 on Internet-facing Prod vs Internal Test Asset",
+    "cvssBase": 8.8,
+    "cvssOnlyPriority": "P2",
+    "epss": 0.942,
+    "inKev": true,
+    "assetCriticality": 5,
+    "environment": "production",
+    "internetFacing": true,
+    "vulnTrackScore": 95.2,
+    "vulnTrackPriority": "P1",
+    "overrides": [],
+    "breakdown": {
+      "cvssContribution": 26.4,
+      "epssContribution": 18.8,
+      "kevContribution": 20,
+      "assetContribution": 15,
+      "bizContribution": 10,
+      "expContribution": 5
+    },
+    "rankingDifference": "P2 -> P1",
+    "analysis": "Elevated (Threat/Asset risk)"
+  },
+  {
+    "caseId": "CASE-4",
+    "description": "Identical CVE-2023-34362 on Internal Isolated Test Asset",
+    "cvssBase": 8.8,
+    "cvssOnlyPriority": "P2",
+    "epss": 0.942,
+    "inKev": true,
+    "assetCriticality": 2,
+    "environment": "test",
+    "internetFacing": false,
+    "vulnTrackScore": 70,
+    "vulnTrackPriority": "P1",
+    "overrides": [],
+    "breakdown": {
+      "cvssContribution": 26.4,
+      "epssContribution": 18.8,
+      "kevContribution": 20,
+      "assetContribution": 3.8,
+      "bizContribution": 0.5,
+      "expContribution": 0.5
+    },
+    "rankingDifference": "P2 -> P1",
+    "analysis": "Elevated (Threat/Asset risk)"
+  },
+  {
+    "caseId": "CASE-5",
+    "description": "Medium CVSS Path Traversal with Active KEV Exploitation (Override Trigger)",
+    "cvssBase": 5.3,
+    "cvssOnlyPriority": "P3",
+    "epss": 0.72,
+    "inKev": true,
+    "assetCriticality": 3,
+    "environment": "production",
+    "internetFacing": true,
+    "vulnTrackScore": 68.3,
+    "vulnTrackPriority": "P1",
+    "overrides": [
+      "Elevated to P1: Active CISA KEV on internet-facing asset"
+    ],
+    "breakdown": {
+      "cvssContribution": 15.9,
+      "epssContribution": 14.4,
+      "kevContribution": 20,
+      "assetContribution": 7.5,
+      "bizContribution": 5.5,
+      "expContribution": 5
+    },
+    "rankingDifference": "P3 -> P1",
+    "analysis": "Elevated (Threat/Asset risk)"
+  },
+  {
+    "caseId": "CASE-6",
+    "description": "High CVSS Local Privilege Escalation without exploitability on Internal Database",
+    "cvssBase": 7.8,
+    "cvssOnlyPriority": "P2",
+    "epss": 0.032,
+    "inKev": false,
+    "assetCriticality": 4,
+    "environment": "production",
+    "internetFacing": false,
+    "vulnTrackScore": 42.5,
+    "vulnTrackPriority": "P3",
+    "overrides": [],
+    "breakdown": {
+      "cvssContribution": 23.4,
+      "epssContribution": 0.6,
+      "kevContribution": 0,
+      "assetContribution": 11.3,
+      "bizContribution": 5.3,
+      "expContribution": 2
+    },
+    "rankingDifference": "P2 -> P3",
+    "analysis": "Deprioritized (Avoids alert fatigue)"
+  },
+  {
+    "caseId": "CASE-7",
+    "description": "Low CVSS Denial of Service on Public Production Edge",
+    "cvssBase": 3.5,
+    "cvssOnlyPriority": "P4",
+    "epss": 0.045,
+    "inKev": false,
+    "assetCriticality": 3,
+    "environment": "production",
+    "internetFacing": true,
+    "vulnTrackScore": 29.2,
+    "vulnTrackPriority": "P4",
+    "overrides": [],
+    "breakdown": {
+      "cvssContribution": 10.5,
+      "epssContribution": 0.9,
+      "kevContribution": 0,
+      "assetContribution": 7.5,
+      "bizContribution": 5.3,
+      "expContribution": 5
+    },
+    "rankingDifference": "P4 -> P4",
+    "analysis": "Maintained"
+  }
+]

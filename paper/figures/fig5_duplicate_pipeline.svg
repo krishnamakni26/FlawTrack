@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 5. VulnTrack Natural Language Duplicate Detection Processing Pipeline</text>
+
+  <!-- Step 1: Input Concatenation -->
+  <g transform="translate(40, 80)">
+    <rect x="0" y="0" width="160" height="180" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="80" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">1. Ingestion</text>
+    <text x="15" y="60" font-size="10" fill="#334155">• Title (2x weight)</text>
+    <text x="15" y="85" font-size="10" fill="#334155">• Category string</text>
+    <text x="15" y="110" font-size="10" fill="#334155">• Description text</text>
+    <text x="15" y="135" font-size="10" fill="#334155">• Steps to Reproduce</text>
+    <text x="15" y="160" font-size="9" fill="#64748b">Raw freeform text</text>
+  </g>
+
+  <line x1="200" y1="170" x2="240" y2="170" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Tokenization & Normalization -->
+  <g transform="translate(240, 80)">
+    <rect x="0" y="0" width="160" height="180" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+    <text x="80" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">2. Normalization</text>
+    <text x="15" y="60" font-size="10" fill="#334155">• Case folding (lower)</text>
+    <text x="15" y="85" font-size="10" fill="#334155">• Regexp Tokenizer</text>
+    <text x="15" y="110" font-size="10" fill="#334155">• Strip punctuation</text>
+    <text x="15" y="135" font-size="10" fill="#334155">• Length &gt; 2 filter</text>
+    <text x="15" y="160" font-size="10" fill="#334155">• Discard pure digits</text>
+  </g>
+
+  <line x1="400" y1="170" x2="440" y2="170" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Stopword Filtering & Porter Stemming -->
+  <g transform="translate(440, 80)">
+    <rect x="0" y="0" width="170" height="180" rx="8" fill="#fefce8" stroke="#eab308" stroke-width="2"/>
+    <text x="85" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#854d0e">3. NLP Reduction</text>
+    <text x="15" y="60" font-size="10" fill="#334155">• Stopword Removal</text>
+    <text x="25" y="80" font-size="9" fill="#713f12">("the", "is", "at", "which")</text>
+    <text x="15" y="110" font-size="10" fill="#334155">• Porter Stemming:</text>
+    <text x="25" y="130" font-size="9" fill="#713f12">vulnerability &#8594; vulner</text>
+    <text x="25" y="145" font-size="9" fill="#713f12">injecting &#8594; inject</text>
+    <text x="25" y="160" font-size="9" fill="#713f12">executed &#8594; execut</text>
+  </g>
+
+  <line x1="610" y1="170" x2="650" y2="170" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Term Frequency Vector -->
+  <g transform="translate(650, 80)">
+    <rect x="0" y="0" width="160" height="180" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="80" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">4. TF Vector</text>
+    <text x="15" y="60" font-size="10" fill="#334155">• Build Term Frequencies</text>
+    <text x="15" y="85" font-size="10" fill="#334155">• Sparse token map</text>
+    <text x="15" y="110" font-size="10" fill="#334155">tf[term] = count</text>
+    <text x="15" y="140" font-size="10" fill="#334155">Normalized L2 norm:</text>
+    <text x="15" y="160" font-size="9" fill="#15803d">||tf|| = √(∑ (tf_i)²)</text>
+  </g>
+
+  <line x1="810" y1="170" x2="850" y2="170" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 5: Cosine Similarity & Identifier Bonuses -->
+  <g transform="translate(850, 80)">
+    <rect x="0" y="0" width="290" height="180" rx="8" fill="#fdf2f8" stroke="#ec4899" stroke-width="2"/>
+    <text x="145" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#9d174d">5. Cosine Metric &amp; Bonuses</text>
+    <text x="15" y="55" font-size="10" fill="#334155">sim = (tf_A · tf_B) / (||tf_A|| × ||tf_B||)</text>
+    <line x1="15" y1="68" x2="275" y2="68" stroke="#fbcfe8"/>
+    <text x="15" y="90" font-size="10" font-weight="bold" fill="#831843">Identifier Boosts:</text>
+    <text x="15" y="110" font-size="10" fill="#9d174d">• Identical CVE Match: +0.15</text>
+    <text x="15" y="130" font-size="10" fill="#9d174d">• Identical CWE Match: +0.05</text>
+    <text x="15" y="150" font-size="10" fill="#9d174d">• Identical Category Match: +0.03</text>
+    <text x="15" y="170" font-size="9" fill="#64748b">Final Score = min(1.0, sim + boosts)</text>
+  </g>
+
+  <!-- Step 6: Threshold Decision Gate (Bottom) -->
+  <g transform="translate(300, 310)">
+    <rect x="0" y="0" width="600" height="160" rx="10" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <text x="300" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#38bdf8">DECISION ENGINE (Configurable Threshold θ = 0.75)</text>
+    <line x1="30" y1="45" x2="570" y2="45" stroke="#334155"/>
+
+    <text x="40" y="75" font-size="12" fill="#e2e8f0">If <tspan font-weight="bold" fill="#fbbf24">similarity ≥ θ</tspan>:</text>
+    <text x="60" y="98" font-size="11" fill="#f87171">• Flag <tspan font-weight="bold">isPotentialDuplicate = true</tspan></text>
+    <text x="60" y="118" font-size="11" fill="#f87171">• Link top 5 candidates with similarity scores &amp; diff metadata</text>
+    <text x="60" y="138" font-size="11" fill="#f87171">• Alert triage analyst with non-blocking confirmation dialog</text>
+
+    <line x1="340" y1="60" x2="340" y2="145" stroke="#475569" stroke-dasharray="3,3"/>
+
+    <text x="360" y="75" font-size="12" fill="#e2e8f0">If <tspan font-weight="bold" fill="#34d399">similarity &lt; θ</tspan>:</text>
+    <text x="380" y="98" font-size="11" fill="#4ade80">• Proceed to Classification &amp; Validation</text>
+    <text x="380" y="118" font-size="11" fill="#4ade80">• Avoid duplicate work &amp; alert fatigue</text>
+  </g>
+
+  <path d="M 995 260 L 995 390 L 900 390" fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+</svg>
