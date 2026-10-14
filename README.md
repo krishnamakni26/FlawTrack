@@ -1,11 +1,11 @@
-# VulnTrack — Smart Cybersecurity Vulnerability Reporting & Management System
+# FlawTrack — Smart Cybersecurity Vulnerability Reporting & Management System
 
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Tests: Jest](https://img.shields.io/badge/Tests-51%20Passed-success.svg)](https://jestjs.io/)
 [![Coverage: 80%+](https://img.shields.io/badge/Coverage-Services%20%3E%2080%25-brightgreen.svg)](https://jestjs.io/)
 
-**VulnTrack** is an enterprise-grade cybersecurity vulnerability reporting and lifecycle governance platform. Unlike conventional scanners or basic issue trackers that rely solely on static CVSS scores, VulnTrack manages the entire 13-stage vulnerability lifecycle and decides **what to fix first** using real-time exploit intelligence (EPSS, CISA KEV) combined with asset criticality, network exposure, and business sensitivity.
+**FlawTrack** is an enterprise-grade cybersecurity vulnerability reporting and lifecycle governance platform. Unlike conventional scanners or basic issue trackers that rely solely on static CVSS scores, FlawTrack manages the entire 13-stage vulnerability lifecycle and decides **what to fix first** using real-time exploit intelligence (EPSS, CISA KEV) combined with asset criticality, network exposure, and business sensitivity.
 
 ---
 
@@ -31,6 +31,29 @@
 
 ---
 
+## Database Renaming & Migration Note
+
+The application default database has been updated to `flawtrack`. If you have an existing local MongoDB database from a prior version:
+
+- **Option A (Fresh Seed — Recommended):**
+  Run the seed script to populate a clean `flawtrack` database:
+  ```bash
+  cd backend
+  npm run seed
+  ```
+- **Option B (Migrate Existing Data):**
+  If you wish to retain your existing data from the previous database, dump and restore into `flawtrack` using MongoDB Database Tools:
+  ```bash
+  # 1. Dump existing database (see docs/RENAME_LOG.md for legacy database identifier)
+  mongodump --db=<old-db> --out=./backup
+
+  # 2. Restore into the new flawtrack database
+  mongorestore --nsFrom="<old-db>.*" --nsTo="flawtrack.*" ./backup/<old-db>/
+  ```
+  *(See [`docs/RENAME_LOG.md`](docs/RENAME_LOG.md) for the exact legacy database command snippet).*
+
+---
+
 ## Quick Start & Running Locally
 
 ### Prerequisites
@@ -49,7 +72,7 @@ Simply double-click **`launcher.bat`** in the project root:
 
 1. **Clone and enter repository:**
    ```bash
-   cd vulntrack
+   cd flawtrack
    ```
 
 2. **Start Backend Server:**
@@ -77,7 +100,7 @@ Simply double-click **`launcher.bat`** in the project root:
 ```bash
 docker compose up -d
 ```
-MongoDB will be available at `mongodb://localhost:27017/vulntrack`.
+MongoDB will be available at `mongodb://localhost:27017/flawtrack`.
 
 ---
 
@@ -85,10 +108,10 @@ MongoDB will be available at `mongodb://localhost:27017/vulntrack`.
 
 | Role | Email | Password | Access Level |
 |---|---|---|---|
-| **Admin** | `admin@vulntrack.local` | `Password123!` | Full administration, user management, asset CRUD, settings calibration, audit logs, job triggers |
-| **Senior Analyst** | `analyst1@vulntrack.local` | `Password123!` | Priority queue, triage, CVSS calculator, threat intel refresh, assignment, re-test |
-| **Junior Analyst** | `analyst2@vulntrack.local` | `Password123!` | Priority queue, triage, remediation notes |
-| **Reporter** | `reporter1@vulntrack.local` | `Password123!` | Submit findings, view own reports, respond to clarification requests |
+| **Admin** | `admin@flawtrack.local` | `Password123!` | Full administration, user management, asset CRUD, settings calibration, audit logs, job triggers |
+| **Senior Analyst** | `analyst1@flawtrack.local` | `Password123!` | Priority queue, triage, CVSS calculator, threat intel refresh, assignment, re-test |
+| **Junior Analyst** | `analyst2@flawtrack.local` | `Password123!` | Priority queue, triage, remediation notes |
+| **Reporter** | `reporter1@flawtrack.local` | `Password123!` | Submit findings, view own reports, respond to clarification requests |
 
 *Note: 1-click quick-fill buttons are provided on the login page for effortless evaluation.*
 
@@ -96,7 +119,7 @@ MongoDB will be available at `mongodb://localhost:27017/vulntrack`.
 
 ## Running Automated Tests & Coverage
 
-VulnTrack includes comprehensive unit tests for all core engines and integration tests for API endpoints:
+FlawTrack includes comprehensive unit tests for all core engines and integration tests for API endpoints:
 
 ```bash
 cd backend
@@ -118,7 +141,7 @@ npm run test:coverage
 ## Project Structure
 
 ```
-vulntrack/
+flawtrack/
 ├── backend/
 │   ├── src/
 │   │   ├── config/          # Environment, MongoDB connection, system constants
@@ -155,7 +178,8 @@ vulntrack/
 │   ├── SECURITY.md          # AppSec defenses, upload hardening, and npm audit analysis
 │   ├── ASSUMPTIONS.md       # Engineering design decisions and technical defaults
 │   ├── USER_GUIDE.md        # Comprehensive user manual for Reporters, Analysts, and Admins
-│   └── DEMO_SCRIPT.md       # Step-by-step demonstration walkthrough script
+│   ├── DEMO_SCRIPT.md       # Step-by-step demonstration walkthrough script
+│   └── RENAME_LOG.md        # Complete brand rename ledger
 ├── docker-compose.yml       # Production/Development Docker Compose configuration
 └── README.md                # Project documentation
 ```
@@ -164,16 +188,19 @@ vulntrack/
 
 ## Documentation Links
 
-- [Architecture & Mermaid Diagrams](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/ARCHITECTURE.md)
-- [13-Stage Methodology & Risk Mathematics](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/METHODOLOGY.md)
-- [REST API Reference](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/API.md)
-- [Security Architecture & Controls](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/SECURITY.md)
-- [Live Demonstration Script](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/DEMO_SCRIPT.md)
-- [User Guide & Operations Manual](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/USER_GUIDE.md)
-- [Assumptions & Design Decisions](file:///C:/Users/KRISHNA%20MAKANI/.gemini/antigravity-ide/scratch/vulntrack/docs/ASSUMPTIONS.md)
+- [Architecture & Mermaid Diagrams](docs/ARCHITECTURE.md)
+- [13-Stage Methodology & Risk Mathematics](docs/METHODOLOGY.md)
+- [REST API Reference](docs/API.md)
+- [Security Architecture & Controls](docs/SECURITY.md)
+- [Live Demonstration Script](docs/DEMO_SCRIPT.md)
+- [User Guide & Operations Manual](docs/USER_GUIDE.md)
+- [Assumptions & Design Decisions](docs/ASSUMPTIONS.md)
+- [Rebrand Audit Log](docs/RENAME_LOG.md)
 
 ---
 
 ## License
 
 This project is licensed under the MIT License.
+#   F l a w T r a c k  
+ 
