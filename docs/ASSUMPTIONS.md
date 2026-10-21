@@ -1,11 +1,11 @@
-# VulnTrack — Architectural & Design Assumptions
+# FlawTrack — Architectural & Design Assumptions
 
-This document records the architectural defaults, sensible defaults, and technical assumptions adopted in VulnTrack in accordance with Section 0 of the specification.
+This document records the architectural defaults, sensible defaults, and technical assumptions adopted in FlawTrack in accordance with Section 0 of the specification.
 
 ---
 
 ## 1. Environment & Database Runtime
-- **Database Connection Strategy**: The system attempts to connect to `MONGODB_URI` (default: `mongodb://localhost:27017/vulntrack`). If an external MongoDB instance is not detected or if `USE_MEMORY_DB=true`, the backend automatically instantiates an embedded, zero-configuration `mongodb-memory-server` instance. This ensures the application and test suites run seamlessly out of the box in any developer or evaluation environment without external infrastructure requirements.
+- **Database Connection Strategy**: The system attempts to connect to `MONGODB_URI` (default: `mongodb://localhost:27017/flawtrack`). If an external MongoDB instance is not detected or if `USE_MEMORY_DB=true`, the backend automatically instantiates an embedded, zero-configuration `mongodb-memory-server` instance. This ensures the application and test suites run seamlessly out of the box in any developer or evaluation environment without external infrastructure requirements.
 - **Port Allocation**: Backend runs on port `5000` (or `PORT` from `.env`). Frontend Vite dev server runs on port `5173`. CORS allows `http://localhost:5173` and `http://127.0.0.1:5173`.
 
 ---

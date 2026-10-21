@@ -5,7 +5,7 @@
     </filter>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 9. VulnTrack Operational Security Operations Dashboard &amp; Prioritization Console</text>
+  <text x="600" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 9. FlawTrack Operational Security Operations Dashboard &amp; Prioritization Console</text>
 
   <!-- Browser Frame -->
   <rect x="40" y="55" width="1120" height="600" rx="10" fill="#0f172a" stroke="#334155" stroke-width="2"/>
@@ -15,7 +15,7 @@
   <circle cx="82" cy="75" r="5" fill="#f59e0b"/>
   <circle cx="99" cy="75" r="5" fill="#10b981"/>
   <rect x="130" y="65" width="400" height="20" rx="4" fill="#1e293b"/>
-  <text x="140" y="79" font-size="11" fill="#94a3b8">https://vulntrack.internal/dashboard — SecOps Unified Console</text>
+  <text x="140" y="79" font-size="11" fill="#94a3b8">https://flawtrack.internal/dashboard — SecOps Unified Console</text>
 
   <!-- App Body -->
   <rect x="42" y="95" width="1116" height="558" fill="#f8fafc"/>

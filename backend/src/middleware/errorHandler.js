@@ -32,8 +32,17 @@ const errorHandler = (err, req, res, next) => {
   }
 
   // Handle Multer upload errors
-  if (err.code === 'LIMIT_FILE_SIZE') {
-    return errorResponse(res, 'Uploaded file exceeds the maximum allowed size limit', 400, 'FILE_TOO_LARGE');
+  if (err.name === 'MulterError') {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      return errorResponse(res, 'Uploaded file exceeds the maximum allowed size limit', 400, 'FILE_TOO_LARGE');
+    }
+    if (err.code === 'LIMIT_FILE_COUNT') {
+      return errorResponse(res, 'Too many files uploaded. Maximum 5 allowed', 400, 'TOO_MANY_FILES');
+    }
+    if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+      return errorResponse(res, `Unexpected upload field: '${err.field}'. Expected 'attachments'`, 400, 'UNEXPECTED_FIELD');
+    }
+    return errorResponse(res, err.message, 400, 'UPLOAD_ERROR');
   }
 
   const statusCode = err.statusCode || 500;

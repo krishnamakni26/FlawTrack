@@ -1,4 +1,4 @@
-# VulnTrack Live Demonstration Script & Walkthrough
+# FlawTrack Live Demonstration Script & Walkthrough
 
 This demo script demonstrates the full 13-stage vulnerability management lifecycle, NLP duplicate detection, contextual risk prioritization, SLA automation, and immutable auditing.
 
@@ -8,10 +8,10 @@ This demo script demonstrates the full 13-stage vulnerability management lifecyc
 
 | Role | Email | Password | Permissions |
 |---|---|---|---|
-| **Admin** | `admin@vulntrack.local` | `Password123!` | Full platform administration, settings, user management, audit logs |
-| **Senior Analyst** | `analyst1@vulntrack.local` | `Password123!` | Triage, validation, CVSS, threat intelligence, assignment, retest |
-| **Junior Analyst** | `analyst2@vulntrack.local` | `Password123!` | Triage, remediation notes, retest |
-| **Reporter** | `reporter1@vulntrack.local` | `Password123!` | Submit vulnerabilities, view own reports, answer info inquiries |
+| **Admin** | `admin@flawtrack.local` | `Password123!` | Full platform administration, settings, user management, audit logs |
+| **Senior Analyst** | `analyst1@flawtrack.local` | `Password123!` | Triage, validation, CVSS, threat intelligence, assignment, retest |
+| **Junior Analyst** | `analyst2@flawtrack.local` | `Password123!` | Triage, remediation notes, retest |
+| **Reporter** | `reporter1@flawtrack.local` | `Password123!` | Submit vulnerabilities, view own reports, answer info inquiries |
 
 ---
 
@@ -39,7 +39,7 @@ This demo script demonstrates the full 13-stage vulnerability management lifecyc
 
 ## Phase 2: Analyst Triage & Duplicate Confirmation
 
-1. Log out and log in as **`analyst1@vulntrack.local`**.
+1. Log out and log in as **`analyst1@flawtrack.local`**.
 2. Navigate to **"Priority Queue"** in the sidebar.
 3. Check the checkbox for **"Duplicate Candidates Only"**.
 4. Open the newly submitted finding by clicking **"Triage"**.
@@ -110,7 +110,7 @@ This demo script demonstrates the full 13-stage vulnerability management lifecyc
 ## Phase 8: Assignment & Automated SLA Tracking
 
 1. Go to the **"Remediation"** tab.
-2. Select `Sarah Connor (analyst1@vulntrack.local)` and click **"Assign"**.
+2. Select `Sarah Connor (analyst1@flawtrack.local)` and click **"Assign"**.
 3. Click **"Update Status Workflow"** &rarr; select **"IN_PROGRESS"**.
 4. In the top banner, observe the **SLA Countdown Badge**:
    - For P1: Shows hours remaining against the 24-hour deadline.
@@ -136,7 +136,7 @@ This demo script demonstrates the full 13-stage vulnerability management lifecyc
 
 ## Phase 10: Automatic Threat Refresh & Escalation
 
-1. Log in as **`admin@vulntrack.local`**.
+1. Log in as **`admin@flawtrack.local`**.
 2. Navigate to **"Job Control"** (`/admin/jobs`).
 3. Click **"Run Now"** on **"Threat Intelligence Refresh"**.
 4. **Observe:** The daemon sweeps all active vulnerabilities, refreshes EPSS/KEV, recalculates risk scores, and automatically escalates priorities when new threat indicators appear.

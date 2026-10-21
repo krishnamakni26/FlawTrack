@@ -6,20 +6,20 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('vt_user');
+    const saved = localStorage.getItem('ft_user');
     return saved ? JSON.parse(saved) : null;
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem('vt_access_token');
+      const token = localStorage.getItem('ft_access_token');
       if (token) {
         try {
           const res = await authApi.getMe();
           if (res.success && res.data?.user) {
             setUser(res.data.user);
-            localStorage.setItem('vt_user', JSON.stringify(res.data.user));
+            localStorage.setItem('ft_user', JSON.stringify(res.data.user));
           }
         } catch (err) {
           // Token might be expired, interceptor will try refresh or log out
@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
     if (res.success && res.data) {
       const { user: userData, accessToken, refreshToken } = res.data;
       setUser(userData);
-      localStorage.setItem('vt_user', JSON.stringify(userData));
-      localStorage.setItem('vt_access_token', accessToken);
-      localStorage.setItem('vt_refresh_token', refreshToken);
+      localStorage.setItem('ft_user', JSON.stringify(userData));
+      localStorage.setItem('ft_access_token', accessToken);
+      localStorage.setItem('ft_refresh_token', refreshToken);
       return userData;
     }
   };
@@ -48,9 +48,9 @@ export const AuthProvider = ({ children }) => {
     if (res.success && res.data) {
       const { user: userData, accessToken, refreshToken } = res.data;
       setUser(userData);
-      localStorage.setItem('vt_user', JSON.stringify(userData));
-      localStorage.setItem('vt_access_token', accessToken);
-      localStorage.setItem('vt_refresh_token', refreshToken);
+      localStorage.setItem('ft_user', JSON.stringify(userData));
+      localStorage.setItem('ft_access_token', accessToken);
+      localStorage.setItem('ft_refresh_token', refreshToken);
       return userData;
     }
   };
@@ -62,15 +62,16 @@ export const AuthProvider = ({ children }) => {
       // Ignore network errors on logout
     }
     setUser(null);
-    localStorage.removeItem('vt_user');
-    localStorage.removeItem('vt_access_token');
-    localStorage.removeItem('vt_refresh_token');
+    localStorage.removeItem('ft_user');
+    localStorage.removeItem('ft_access_token');
+    localStorage.removeItem('ft_refresh_token');
   };
 
   const isReporter = user?.role === ROLES.REPORTER;
   const isAnalyst = user?.role === ROLES.ANALYST;
+  const isDeveloper = user?.role === ROLES.DEVELOPER;
   const isAdmin = user?.role === ROLES.ADMIN;
-  const isStaff = isAnalyst || isAdmin;
+  const isStaff = isAnalyst || isAdmin || isDeveloper;
 
   return (
     <AuthContext.Provider
@@ -82,6 +83,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         isReporter,
         isAnalyst,
+        isDeveloper,
         isAdmin,
         isStaff,
       }}

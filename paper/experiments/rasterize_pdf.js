@@ -3,7 +3,7 @@ const path = require('path');
 const puppeteer = require(path.resolve(__dirname, '../../backend/node_modules/puppeteer-core'));
 
 async function rasterize() {
-  const pdfPath = path.resolve(__dirname, '../VulnTrack_Paper.pdf');
+  const pdfPath = path.resolve(__dirname, '../FlawTrack_Paper.pdf');
   const outDir = path.resolve(__dirname, '../format_check');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });

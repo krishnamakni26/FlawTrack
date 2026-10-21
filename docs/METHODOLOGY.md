@@ -1,8 +1,8 @@
-# VulnTrack 13-Stage Vulnerability Management Methodology & Risk Mathematics
+# FlawTrack 13-Stage Vulnerability Management Methodology & Risk Mathematics
 
 ## 1. The 13-Stage Lifecycle Methodology
 
-Traditional vulnerability tools function as static scanners or dumb bug trackers. VulnTrack operates as an active vulnerability governance and decision engine enforcing a strict 13-stage methodology:
+Traditional vulnerability tools function as static scanners or dumb bug trackers. FlawTrack operates as an active vulnerability governance and decision engine enforcing a strict 13-stage methodology:
 
 | Stage # | Lifecycle Stage | Description & Engine Execution |
 |---|---|---|
@@ -24,7 +24,7 @@ Traditional vulnerability tools function as static scanners or dumb bug trackers
 
 ## 2. Contextual Risk Score Mathematical Formula
 
-VulnTrack normalizes all technical, threat, and business dimensions onto a uniform **0.0 to 1.0** scale:
+FlawTrack normalizes all technical, threat, and business dimensions onto a uniform **0.0 to 1.0** scale:
 
 ### 2.1 Component Normalization
 

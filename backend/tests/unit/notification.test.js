@@ -9,7 +9,7 @@ describe('NotificationService', () => {
   beforeEach(async () => {
     user = await User.create({
       name: 'Alert User',
-      email: 'alerts@vulntrack.local',
+      email: 'alerts@flawtrack.local',
       passwordHash: 'dummy',
       role: 'ANALYST',
     });
@@ -45,7 +45,7 @@ describe('NotificationService', () => {
     const transporter = await NotificationService.getTransporter();
     expect(transporter).toBeDefined();
     const mailResult = await transporter.sendMail({
-      to: 'test@vulntrack.local',
+      to: 'test@flawtrack.local',
       subject: 'Test Subject',
     });
     expect(mailResult.messageId).toBe('test-mock-id');

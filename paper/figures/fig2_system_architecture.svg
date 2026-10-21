@@ -8,7 +8,7 @@
     </filter>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 2. VulnTrack Three-Tier Enterprise System Architecture</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 2. FlawTrack Three-Tier Enterprise System Architecture</text>
 
   <!-- Tier 1: Client Layer -->
   <rect x="50" y="65" width="1100" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>

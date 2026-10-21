@@ -5,7 +5,7 @@
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 4. VulnTrack Vulnerability Status Finite State Machine (FSM)</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 4. FlawTrack Vulnerability Status Finite State Machine (FSM)</text>
 
   <!-- Initial State: SUBMITTED -->
   <circle cx="90" cy="180" r="30" fill="#3b82f6"/>

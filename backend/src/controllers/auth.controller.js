@@ -23,6 +23,45 @@ const generateTokens = (user) => {
   return { accessToken, refreshToken };
 };
 
+const setAuthCookies = (res, accessToken, refreshToken) => {
+  const isProd = env.NODE_ENV === 'production';
+  const cookieOptions = {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
+    path: '/',
+  };
+
+  res.cookie('token', accessToken, {
+    ...cookieOptions,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+  res.cookie('accessToken', accessToken, {
+    ...cookieOptions,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+
+  if (refreshToken) {
+    res.cookie('refreshToken', refreshToken, {
+      ...cookieOptions,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+  }
+};
+
+const clearAuthCookies = (res) => {
+  const isProd = env.NODE_ENV === 'production';
+  const cookieOptions = {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
+    path: '/',
+  };
+  res.clearCookie('token', cookieOptions);
+  res.clearCookie('accessToken', cookieOptions);
+  res.clearCookie('refreshToken', cookieOptions);
+};
+
 const registerSchema = z.object({
   name: z.string().min(2).max(100),
   email: z.string().email(),
@@ -71,6 +110,8 @@ class AuthController {
         after: { name: user.name, email: user.email, role: user.role },
         req,
       });
+
+      setAuthCookies(res, accessToken, refreshToken);
 
       return successResponse(
         res,
@@ -165,6 +206,8 @@ class AuthController {
         req,
       });
 
+      setAuthCookies(res, accessToken, refreshToken);
+
       return successResponse(
         res,
         {
@@ -197,6 +240,7 @@ class AuthController {
       }
 
       const tokens = generateTokens(user);
+      setAuthCookies(res, tokens.accessToken, tokens.refreshToken);
 
       return successResponse(res, tokens, 200, 'Token refreshed successfully');
     } catch (err) {
@@ -205,6 +249,7 @@ class AuthController {
   }
 
   static async logout(req, res) {
+    clearAuthCookies(res);
     return successResponse(res, null, 200, 'Logged out successfully');
   }
 

@@ -1,5 +1,5 @@
 =====================================================================================
-VULNTRACK DUPLICATE DETECTION PERFORMANCE ACROSS SIMILARITY THRESHOLDS
+FLAWTRACK DUPLICATE DETECTION PERFORMANCE ACROSS SIMILARITY THRESHOLDS
 Dataset: 24 Synthetic Pairs (12 True Duplicates, 12 True Negatives)
 =====================================================================================
 Threshold    TP     FP     TN     FN     Precision    Recall       F1-Score     Accuracy  

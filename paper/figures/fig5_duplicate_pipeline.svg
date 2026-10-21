@@ -5,7 +5,7 @@
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 5. VulnTrack Natural Language Duplicate Detection Processing Pipeline</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 5. FlawTrack Natural Language Duplicate Detection Processing Pipeline</text>
 
   <!-- Step 1: Input Concatenation -->
   <g transform="translate(40, 80)">

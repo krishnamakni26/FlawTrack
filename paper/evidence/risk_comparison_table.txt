@@ -1,7 +1,7 @@
 =========================================================================================================
-VULNTRACK MULTI-FACTOR RISK ENGINE VS CVSS-ONLY COMPARISON
+FLAWTRACK MULTI-FACTOR RISK ENGINE VS CVSS-ONLY COMPARISON
 =========================================================================================================
-Case ID   CVSS   EPSS    KEV    AssetCrit   Exposure       CVSS-Tier   Score   VulnTrack   Shift / Effect      
+Case ID   CVSS   EPSS    KEV    AssetCrit   Exposure       CVSS-Tier   Score   FlawTrack   Shift / Effect      
 ---------------------------------------------------------------------------------------------------------
 CASE-1    9.8    0.015   NO     1/5         Internal       P1          30.7    P2          P1 => P2 (Deprioritized)
 CASE-2    6.5    0.885   YES    5/5         Public Prod    P3          87.2    P1          P3 => P1 (Elevated) 

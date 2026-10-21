@@ -6,6 +6,7 @@ import {
   ShieldAlert,
   FilePlus2,
   Files,
+  FileText,
   Server,
   Users,
   Sliders,
@@ -59,6 +60,10 @@ export const Sidebar = () => {
               <NavLink to="/queue" className={linkClass}>
                 <ShieldAlert className="w-4 h-4 text-rose-400" />
                 <span>Priority Queue</span>
+              </NavLink>
+              <NavLink to="/reports" className={linkClass}>
+                <FileText className="w-4 h-4 text-amber-400" />
+                <span>Reports & Exports</span>
               </NavLink>
             </nav>
           </div>

@@ -151,5 +151,82 @@ describe('Risk Engine Service', () => {
       expect(result.explanation).toBeInstanceOf(Array);
       expect(result.explanation.length).toBeGreaterThanOrEqual(3);
     });
+
+    test('handles completely missing EPSS, KEV, and asset data without NaN or undefined', async () => {
+      const bareVuln = {
+        cvss: { baseScore: 6.0 },
+        // threat is completely missing
+        // asset is null
+        affectedUsersCount: null,
+      };
+
+      const result = await RiskEngineService.calculateRisk(bareVuln, null, mockSettings);
+
+      expect(isNaN(result.score)).toBe(false);
+      expect(typeof result.score).toBe('number');
+      expect([PRIORITIES.P1, PRIORITIES.P2, PRIORITIES.P3, PRIORITIES.P4]).toContain(result.priority);
+
+      // Verify all breakdown components are finite numbers
+      for (const [key, val] of Object.entries(result.breakdown)) {
+        expect(isNaN(val)).toBe(false);
+        expect(typeof val).toBe('number');
+      }
+
+      // Verify explanation contains no NaN or undefined
+      for (const line of result.explanation) {
+        expect(line).not.toContain('NaN');
+        expect(line).not.toContain('undefined');
+      }
+    });
+  });
+
+  describe('Threshold Boundary Values', () => {
+    test('enforces exact boundary transitions at 70, 50, and 30', async () => {
+      // Custom weights where each input maps linearly to the score
+      const linearSettings = {
+        ...mockSettings,
+        riskWeights: {
+          cvss: 1.0,
+          epss: 0.0,
+          kev: 0.0,
+          assetCriticality: 0.0,
+          businessImpact: 0.0,
+          exposure: 0.0,
+        },
+      };
+
+      // 1. Boundary at 70 (P1 >= 70, P2 < 70)
+      const vuln70 = { cvss: { baseScore: 7.0 }, internetFacing: false };
+      const res70 = await RiskEngineService.calculateRisk(vuln70, null, linearSettings);
+      expect(res70.score).toBe(70.0);
+      expect(res70.priority).toBe(PRIORITIES.P1);
+
+      const vuln699 = { cvss: { baseScore: 6.99 }, internetFacing: false };
+      const res699 = await RiskEngineService.calculateRisk(vuln699, null, linearSettings);
+      expect(res699.score).toBe(69.9);
+      expect(res699.priority).toBe(PRIORITIES.P2);
+
+      // 2. Boundary at 50 (P2 >= 50, P3 < 50)
+      const vuln50 = { cvss: { baseScore: 5.0 }, internetFacing: false };
+      const res50 = await RiskEngineService.calculateRisk(vuln50, null, linearSettings);
+      expect(res50.score).toBe(50.0);
+      expect(res50.priority).toBe(PRIORITIES.P2);
+
+      const vuln499 = { cvss: { baseScore: 4.99 }, internetFacing: false };
+      const res499 = await RiskEngineService.calculateRisk(vuln499, null, linearSettings);
+      expect(res499.score).toBe(49.9);
+      expect(res499.priority).toBe(PRIORITIES.P3);
+
+      // 3. Boundary at 30 (P3 >= 30, P4 < 30)
+      const vuln30 = { cvss: { baseScore: 3.0 }, internetFacing: false };
+      const res30 = await RiskEngineService.calculateRisk(vuln30, null, linearSettings);
+      expect(res30.score).toBe(30.0);
+      expect(res30.priority).toBe(PRIORITIES.P3);
+
+      const vuln299 = { cvss: { baseScore: 2.99 }, internetFacing: false };
+      const res299 = await RiskEngineService.calculateRisk(vuln299, null, linearSettings);
+      expect(res299.score).toBe(29.9);
+      expect(res299.priority).toBe(PRIORITIES.P4);
+    });
   });
 });

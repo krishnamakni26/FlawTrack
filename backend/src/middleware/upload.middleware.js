@@ -50,17 +50,8 @@ const DANGEROUS_EXTENSIONS = new Set([
   '.dll', '.so',
 ]);
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    // Generate secure cryptographically random UUID filename to prevent collisions & traversal
-    const ext = path.extname(file.originalname).toLowerCase();
-    const secureName = `${crypto.randomUUID()}${ext}`;
-    cb(null, secureName);
-  },
-});
+// Memory storage keeps uploaded files in RAM so they can be transferred to Cloudinary without permanent disk writes
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();

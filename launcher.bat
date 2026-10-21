@@ -7,11 +7,11 @@ set "PATH=%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SystemR
 :: Change directory to the folder containing this batch script
 cd /d "%~dp0"
 
-title VulnTrack System Launcher
+title FlawTrack System Launcher
 color 0B
 
 echo ================================================================================
-echo   VULNTRACK -- Smart Cybersecurity Vulnerability Management System
+echo   FLAWTRACK -- Smart Cybersecurity Vulnerability Management System
 echo   Automated Launcher and Service Manager
 echo ================================================================================
 echo.
@@ -55,7 +55,7 @@ netstat -ano | findstr ":5000" | findstr "LISTENING" >nul 2>&1
 if %errorlevel% equ 0 goto BACKEND_RUNNING
 
 echo [*] Starting Backend API Server (Port 5000)...
-start "VulnTrack Backend Server [Port 5000]" cmd /k "title VulnTrack Backend Server && cd /d "%~dp0backend" && node src/server.js"
+start "FlawTrack Backend Server [Port 5000]" cmd /k "title FlawTrack Backend Server && cd /d "%~dp0backend" && node src/server.js"
 goto CHECK_FRONTEND
 
 :BACKEND_RUNNING
@@ -67,7 +67,7 @@ netstat -ano | findstr ":5173" | findstr "LISTENING" >nul 2>&1
 if %errorlevel% equ 0 goto FRONTEND_RUNNING
 
 echo [*] Starting Frontend Web Server (Port 5173)...
-start "VulnTrack Frontend Web [Port 5173]" cmd /k "title VulnTrack Frontend Web && cd /d "%~dp0frontend" && npx vite --port 5173"
+start "FlawTrack Frontend Web [Port 5173]" cmd /k "title FlawTrack Frontend Web && cd /d "%~dp0frontend" && npx vite --port 5173"
 goto WAIT_AND_OPEN
 
 :FRONTEND_RUNNING
@@ -77,13 +77,13 @@ echo [OK] Frontend Web App is already running on http://localhost:5173
 echo [*] Waiting 3 seconds for services to be ready...
 ping 127.0.0.1 -n 4 >nul
 
-echo [*] Opening VulnTrack in your default browser...
+echo [*] Opening FlawTrack in your default browser...
 start http://localhost:5173
 
 :MENU
 cls
 echo ================================================================================
-echo   VULNTRACK -- MANAGEMENT CONSOLE
+echo   FLAWTRACK -- MANAGEMENT CONSOLE
 echo ================================================================================
 echo   Status: SERVICES ACTIVE
 echo.
@@ -93,9 +93,9 @@ echo     - Backend REST API:  http://localhost:5000/api/v1
 echo     - Health Endpoint:   http://localhost:5000/api/v1/health
 echo.
 echo   Default Credentials (Quick-fill on Login screen):
-echo     [Admin]    admin@vulntrack.local    /  Password123!
-echo     [Analyst]  analyst1@vulntrack.local /  Password123!
-echo     [Reporter] reporter1@vulntrack.local /  Password123!
+echo     [Admin]    admin@flawtrack.local    /  Password123!
+echo     [Analyst]  analyst1@flawtrack.local /  Password123!
+echo     [Reporter] reporter1@flawtrack.local /  Password123!
 echo ================================================================================
 echo.
 echo   [1] Open Web App in browser (http://localhost:5173)
@@ -137,14 +137,14 @@ goto MENU
 
 :OP_STOP
 echo.
-echo [*] Stopping VulnTrack processes on ports 5000 and 5173...
+echo [*] Stopping FlawTrack processes on ports 5000 and 5173...
 powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 5000,5173 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue; Write-Host ('Stopped process on port ' + $_.LocalPort) }"
 echo [OK] Done.
 ping 127.0.0.1 -n 3 >nul
 goto MENU
 
 :OP_EXIT
-echo Exiting console. VulnTrack servers remain active.
+echo Exiting console. FlawTrack servers remain active.
 exit /b 0
 
 :ERR_NO_NODE

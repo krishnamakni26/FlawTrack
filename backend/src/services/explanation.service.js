@@ -22,13 +22,16 @@ class ExplanationService {
   }) {
     const reasons = [];
 
+    const scoreSafe = Math.round(Number(score) || 0);
+    const prioritySafe = priority || 'P4';
+
     // Summary statement
     reasons.push(
-      `Assigned ${priority} with an aggregated risk index of ${Math.round(score)}/100.`
+      `Assigned ${prioritySafe} with an aggregated risk index of ${scoreSafe}/100.`
     );
 
     // CVSS explanation
-    if (cvssBaseScore !== null && cvssBaseScore !== undefined) {
+    if (cvssBaseScore !== null && cvssBaseScore !== undefined && !isNaN(cvssBaseScore)) {
       reasons.push(
         `Technical Severity: CVSS base score ${cvssBaseScore} (${cvssSeverity || 'Standard'}).`
       );
@@ -37,13 +40,14 @@ class ExplanationService {
     }
 
     // Threat intelligence (EPSS & KEV)
+    const epssVal = Number(epss) || 0;
     if (inKev) {
       reasons.push('Threat Factor: Active weaponization confirmed in CISA Known Exploited Vulnerabilities (KEV) catalog.');
-    } else if (epss > 0.5) {
+    } else if (epssVal > 0.5) {
       const pct = Math.round((1 - (epssPercentile || 0.95)) * 100);
-      reasons.push(`Threat Factor: Elevated exploitation probability (EPSS ${(epss * 100).toFixed(1)}%, top ${pct}% wild exploit potential).`);
-    } else if (epss > 0.1) {
-      reasons.push(`Threat Factor: Moderate exploitation probability (EPSS ${(epss * 100).toFixed(1)}%).`);
+      reasons.push(`Threat Factor: Elevated exploitation probability (EPSS ${(epssVal * 100).toFixed(1)}%, top ${pct}% wild exploit potential).`);
+    } else if (epssVal > 0.1) {
+      reasons.push(`Threat Factor: Moderate exploitation probability (EPSS ${(epssVal * 100).toFixed(1)}%).`);
     } else {
       reasons.push('Threat Factor: Low active exploitation observed in the wild.');
     }
@@ -51,12 +55,15 @@ class ExplanationService {
     // Asset & Context exposure
     if (asset) {
       const facing = asset.internetFacing ? 'Internet-facing' : 'Internal';
+      const crit = asset.criticality ?? 3;
+      const sens = asset.dataSensitivity ?? 3;
       reasons.push(
-        `Asset Context: ${facing} ${asset.environment || 'production'} environment on '${asset.name}' (Criticality ${asset.criticality}/5, Data Sensitivity ${asset.dataSensitivity}/5).`
+        `Asset Context: ${facing} ${asset.environment || 'production'} environment on '${asset.name || 'Unnamed Asset'}' (Criticality ${crit}/5, Data Sensitivity ${sens}/5).`
       );
     } else {
+      const expPercent = Math.round((Number(exposureN) || 0.4) * 100);
       reasons.push(
-        `Asset Context: Exposure factor estimated at ${Math.round(exposureN * 100)}% based on submission telemetry.`
+        `Asset Context: Exposure factor estimated at ${expPercent}% based on submission telemetry.`
       );
     }
 

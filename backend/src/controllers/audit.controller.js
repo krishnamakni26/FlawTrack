@@ -44,7 +44,7 @@ class AuditController {
 
         const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
         res.setHeader('Content-Type', 'text/csv');
-        res.setHeader('Content-Disposition', 'attachment; filename="vulntrack-audit-log.csv"');
+        res.setHeader('Content-Disposition', 'attachment; filename="flawtrack-audit-log.csv"');
         return res.status(200).send(csvContent);
       }
 

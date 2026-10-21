@@ -35,9 +35,13 @@ class CvssService {
       throw new Error('Vector string must be a non-empty string');
     }
 
-    const trimmed = vectorStr.trim();
+    let trimmed = vectorStr.trim();
     if (!trimmed.startsWith('CVSS:3.1/') && !trimmed.startsWith('CVSS:3.0/')) {
-      throw new Error("Vector must start with 'CVSS:3.1/'");
+      if (trimmed.startsWith('AV:')) {
+        trimmed = 'CVSS:3.1/' + trimmed;
+      } else {
+        throw new Error("Vector must start with 'CVSS:3.1/' or 'AV:'");
+      }
     }
 
     const parts = trimmed.split('/');

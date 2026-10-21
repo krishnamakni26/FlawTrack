@@ -5,7 +5,7 @@
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 3. VulnTrack Entity-Relationship (ER) Schema &amp; Data Model</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 3. FlawTrack Entity-Relationship (ER) Schema &amp; Data Model</text>
 
   <!-- Entity 1: User -->
   <g transform="translate(50, 70)">

@@ -1,4 +1,4 @@
-# VulnTrack REST API Reference (v1)
+# FlawTrack REST API Reference (v1)
 
 All API responses follow the consistent JSON envelope format:
 ```json

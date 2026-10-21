@@ -271,7 +271,7 @@ export const UserManagementPage = () => {
                   required
                   value={createForm.email}
                   onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
-                  placeholder="analyst@vulntrack.local"
+                  placeholder="analyst@flawtrack.local"
                   className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-white"
                 />
               </div>

@@ -107,14 +107,15 @@ class DuplicateService {
   static async findDuplicates(targetReport, excludeId = null) {
     try {
       const settings = await Setting.getSettings();
-      const threshold = settings.duplicateThreshold || 0.75;
+      const threshold = settings.duplicateThreshold ?? 0.70;
 
       const query = {
         status: { $nin: [VULN_STATUSES.REJECTED, VULN_STATUSES.DUPLICATE] },
       };
 
-      if (excludeId) {
-        query._id = { $ne: excludeId };
+      const effectiveExcludeId = excludeId || targetReport?._id;
+      if (effectiveExcludeId) {
+        query._id = { $ne: effectiveExcludeId };
       }
 
       const candidates = await Vulnerability.find(query).select(
@@ -124,6 +125,9 @@ class DuplicateService {
       const matches = [];
 
       for (const candidate of candidates) {
+        if (effectiveExcludeId && candidate._id.toString() === effectiveExcludeId.toString()) {
+          continue;
+        }
         const similarity = DuplicateService.computeScore(targetReport, candidate);
         if (similarity >= threshold) {
           matches.push({

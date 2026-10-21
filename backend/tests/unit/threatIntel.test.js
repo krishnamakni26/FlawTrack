@@ -55,4 +55,51 @@ describe('ThreatIntelService', () => {
       expect(epssInfo.percentile).toBeGreaterThan(0);
     });
   });
+
+  describe('Resilience & Failure Simulations', () => {
+    const axios = require('axios');
+
+    beforeEach(() => {
+      process.env.THREAT_INTEL_MODE = 'live';
+      ThreatIntelService.inMemoryKev = null;
+      ThreatIntelService.inMemoryKevFetchedAt = null;
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+      process.env.THREAT_INTEL_MODE = 'offline';
+    });
+
+    it('gracefully falls back on network timeout without crashing', async () => {
+      jest.spyOn(axios, 'get').mockRejectedValue(new Error('timeout of 5000ms exceeded'));
+
+      const result = await ThreatIntelService.getThreatIntelForCve('CVE-2021-44228');
+      expect(result).toBeDefined();
+      expect(result.cveId).toBe('CVE-2021-44228');
+      // Falls back to offline KEV
+      expect(result.inKev).toBe(true);
+    });
+
+    it('gracefully falls back on HTTP 429 Rate Limit without crashing', async () => {
+      const error429 = new Error('Request failed with status code 429');
+      error429.response = { status: 429, data: 'Rate limit exceeded' };
+      jest.spyOn(axios, 'get').mockRejectedValue(error429);
+
+      const result = await ThreatIntelService.getThreatIntelForCve('CVE-2021-44228');
+      expect(result).toBeDefined();
+      expect(result.cveId).toBe('CVE-2021-44228');
+      expect(result.inKev).toBe(true);
+    });
+
+    it('gracefully falls back on malformed or unexpected API JSON response', async () => {
+      jest.spyOn(axios, 'get').mockResolvedValue({
+        data: '<html>Not JSON</html>',
+      });
+
+      const result = await ThreatIntelService.getThreatIntelForCve('CVE-2021-44228');
+      expect(result).toBeDefined();
+      expect(result.cveId).toBe('CVE-2021-44228');
+      expect(result.inKev).toBe(true);
+    });
+  });
 });

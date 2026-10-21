@@ -48,7 +48,7 @@ export const LoginPage = () => {
             <Shield className="w-7 h-7 text-black stroke-[2.5]" />
           </div>
           <h1 className="text-2xl font-bold font-mono tracking-tight text-white">
-            VulnTrack
+            FlawTrack
           </h1>
           <p className="text-xs font-mono text-cyan-400/90 uppercase tracking-widest mt-1">
             Smart Vulnerability Management System
@@ -79,7 +79,7 @@ export const LoginPage = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="analyst@vulntrack.local"
+                  placeholder="analyst@flawtrack.local"
                   className="w-full pl-9 pr-3 py-2 rounded-lg bg-slate-950/80 border border-slate-800 text-slate-100 text-xs font-mono focus:border-cyan-500 focus:outline-none transition"
                 />
               </div>
@@ -121,38 +121,38 @@ export const LoginPage = () => {
             <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
               <button
                 type="button"
-                onClick={() => fillDemoAccount('admin@vulntrack.local', 'Password123!')}
+                onClick={() => fillDemoAccount('admin@flawtrack.local', 'Password123!')}
                 className="p-2 rounded bg-slate-900/80 border border-slate-800 text-slate-300 hover:border-cyan-500/40 hover:text-cyan-300 transition text-left"
               >
                 <div className="font-bold text-red-400">ADMIN</div>
-                <div className="text-[10px] text-slate-500 truncate">admin@vulntrack.local</div>
+                <div className="text-[10px] text-slate-500 truncate">admin@flawtrack.local</div>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillDemoAccount('analyst1@vulntrack.local', 'Password123!')}
+                onClick={() => fillDemoAccount('analyst1@flawtrack.local', 'Password123!')}
                 className="p-2 rounded bg-slate-900/80 border border-slate-800 text-slate-300 hover:border-cyan-500/40 hover:text-cyan-300 transition text-left"
               >
                 <div className="font-bold text-cyan-400">ANALYST 1</div>
-                <div className="text-[10px] text-slate-500 truncate">analyst1@vulntrack.local</div>
+                <div className="text-[10px] text-slate-500 truncate">analyst1@flawtrack.local</div>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillDemoAccount('analyst2@vulntrack.local', 'Password123!')}
+                onClick={() => fillDemoAccount('analyst2@flawtrack.local', 'Password123!')}
                 className="p-2 rounded bg-slate-900/80 border border-slate-800 text-slate-300 hover:border-cyan-500/40 hover:text-cyan-300 transition text-left"
               >
                 <div className="font-bold text-cyan-400">ANALYST 2</div>
-                <div className="text-[10px] text-slate-500 truncate">analyst2@vulntrack.local</div>
+                <div className="text-[10px] text-slate-500 truncate">analyst2@flawtrack.local</div>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillDemoAccount('reporter1@vulntrack.local', 'Password123!')}
+                onClick={() => fillDemoAccount('reporter1@flawtrack.local', 'Password123!')}
                 className="p-2 rounded bg-slate-900/80 border border-slate-800 text-slate-300 hover:border-cyan-500/40 hover:text-cyan-300 transition text-left"
               >
                 <div className="font-bold text-amber-400">REPORTER</div>
-                <div className="text-[10px] text-slate-500 truncate">reporter1@vulntrack.local</div>
+                <div className="text-[10px] text-slate-500 truncate">reporter1@flawtrack.local</div>
               </button>
             </div>
           </div>

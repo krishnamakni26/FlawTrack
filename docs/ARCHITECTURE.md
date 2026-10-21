@@ -1,8 +1,8 @@
-# VulnTrack Architecture & Technical Design
+# FlawTrack Architecture & Technical Design
 
 ## 1. System Overview
 
-**VulnTrack** is an enterprise-grade cybersecurity vulnerability reporting and management platform designed to manage the full 13-stage vulnerability lifecycle. Rather than relying purely on static CVSS scores, VulnTrack calculates contextualized risk prioritizing threats using real-time exploit intelligence (EPSS and CISA KEV) combined with asset criticality, network exposure, and business sensitivity.
+**FlawTrack** is an enterprise-grade cybersecurity vulnerability reporting and management platform designed to manage the full 13-stage vulnerability lifecycle. Rather than relying purely on static CVSS scores, FlawTrack calculates contextualized risk prioritizing threats using real-time exploit intelligence (EPSS and CISA KEV) combined with asset criticality, network exposure, and business sensitivity.
 
 ---
 

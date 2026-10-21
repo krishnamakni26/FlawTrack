@@ -19,8 +19,12 @@ export const settingsApi = {
 
 export const usersApi = {
   list: (params) => axiosClient.get('/users', { params }),
+  getUsers: (params) => axiosClient.get('/users', { params }),
+  getAssignees: () => axiosClient.get('/users/assignees'),
   create: (userData) => axiosClient.post('/users', userData),
+  createUser: (userData) => axiosClient.post('/users', userData),
   update: (id, userData) => axiosClient.patch(`/users/${id}`, userData),
+  updateUser: (id, userData) => axiosClient.patch(`/users/${id}`, userData),
 };
 
 export const jobsApi = {

@@ -1,5 +1,5 @@
 /**
- * VulnTrack Risk Engine Validation Experiment
+ * FlawTrack Risk Engine Validation Experiment
  *
  * Evaluates multi-factor contextual risk scoring against CVSS-only prioritization.
  * Uses exact formulas, default weights, and safeguard overrides from RiskEngineService.
@@ -262,8 +262,8 @@ const results = testCases.map(tc => {
     assetCriticality: evaluated.assetCriticality,
     environment: evaluated.environment,
     internetFacing: evaluated.isInternetFacing,
-    vulnTrackScore: evaluated.score,
-    vulnTrackPriority: evaluated.priority,
+    flawTrackScore: evaluated.score,
+    flawTrackPriority: evaluated.priority,
     overrides: evaluated.overrides,
     breakdown: evaluated.breakdown,
     rankingDifference: `${evaluated.cvssPriority} -> ${evaluated.priority}`,
@@ -280,7 +280,7 @@ const outTxt = path.resolve(__dirname, '../evidence/risk_comparison_table.txt');
 fs.writeFileSync(outJson, JSON.stringify(results, null, 2));
 
 let tableStr = '='.repeat(105) + '\n';
-tableStr += 'VULNTRACK MULTI-FACTOR RISK ENGINE VS CVSS-ONLY COMPARISON\n';
+tableStr += 'FLAWTRACK MULTI-FACTOR RISK ENGINE VS CVSS-ONLY COMPARISON\n';
 tableStr += '='.repeat(105) + '\n';
 tableStr += [
   'Case ID'.padEnd(9),
@@ -291,7 +291,7 @@ tableStr += [
   'Exposure'.padEnd(14),
   'CVSS-Tier'.padEnd(11),
   'Score'.padEnd(7),
-  'VulnTrack'.padEnd(11),
+  'FlawTrack'.padEnd(11),
   'Shift / Effect'.padEnd(20)
 ].join(' ') + '\n';
 tableStr += '-'.repeat(105) + '\n';
@@ -305,9 +305,9 @@ results.forEach(r => {
     (r.assetCriticality + '/5').padEnd(11),
     (r.internetFacing ? 'Public Prod' : (r.environment === 'test' ? 'Test Sandbox' : 'Internal')).padEnd(14),
     r.cvssOnlyPriority.padEnd(11),
-    r.vulnTrackScore.toFixed(1).padEnd(7),
-    r.vulnTrackPriority.padEnd(11),
-    (r.cvssOnlyPriority !== r.vulnTrackPriority ? `${r.cvssOnlyPriority} => ${r.vulnTrackPriority} (${r.analysis.split(' ')[0]})` : 'Unchanged').padEnd(20)
+    r.flawTrackScore.toFixed(1).padEnd(7),
+    r.flawTrackPriority.padEnd(11),
+    (r.cvssOnlyPriority !== r.flawTrackPriority ? `${r.cvssOnlyPriority} => ${r.flawTrackPriority} (${r.analysis.split(' ')[0]})` : 'Unchanged').padEnd(20)
   ].join(' ') + '\n';
 });
 tableStr += '='.repeat(105) + '\n';

@@ -55,6 +55,19 @@ class UserController {
     }
   }
 
+  static async listAssignees(req, res, next) {
+    try {
+      const users = await User.find({
+        role: { $in: [ROLES.ANALYST, ROLES.DEVELOPER, ROLES.ADMIN] },
+        isActive: true,
+      }).select('_id name email role team').sort({ name: 1 });
+
+      return successResponse(res, { users, total: users.length });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async createUser(req, res, next) {
     try {
       const { name, email, password, role, team } = req.body;

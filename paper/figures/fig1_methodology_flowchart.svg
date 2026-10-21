@@ -24,7 +24,7 @@
     </filter>
   </defs>
 
-  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 1. The 13-Stage Vulnerability Management &amp; Prioritization Lifecycle in VulnTrack</text>
+  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 1. The 13-Stage Vulnerability Management &amp; Prioritization Lifecycle in FlawTrack</text>
 
   <!-- Row 1: Stages 1 to 5 (Ingestion, Validation, Deduplication, Classification) -->
   <!-- Stage 1 -->

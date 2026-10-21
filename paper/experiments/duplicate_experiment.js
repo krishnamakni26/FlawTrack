@@ -1,5 +1,5 @@
 /**
- * VulnTrack Duplicate Detection Validation Experiment
+ * FlawTrack Duplicate Detection Validation Experiment
  *
  * Evaluates the TF-IDF / Cosine Similarity duplicate detection engine across
  * multiple threshold values (0.60, 0.70, 0.75, 0.80).
@@ -543,7 +543,7 @@ const outTxt = path.resolve(__dirname, '../evidence/duplicate_experiment_table.t
 fs.writeFileSync(outJson, JSON.stringify({ pairScores, evaluationResults }, null, 2));
 
 let tableStr = '='.repeat(85) + '\n';
-tableStr += 'VULNTRACK DUPLICATE DETECTION PERFORMANCE ACROSS SIMILARITY THRESHOLDS\n';
+tableStr += 'FLAWTRACK DUPLICATE DETECTION PERFORMANCE ACROSS SIMILARITY THRESHOLDS\n';
 tableStr += 'Dataset: 24 Synthetic Pairs (12 True Duplicates, 12 True Negatives)\n';
 tableStr += '='.repeat(85) + '\n';
 tableStr += [

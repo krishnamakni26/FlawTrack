@@ -1,10 +1,11 @@
 /**
- * VulnTrack System Constants
+ * FlawTrack System Constants
  */
 
 const ROLES = Object.freeze({
   REPORTER: 'REPORTER',
   ANALYST: 'ANALYST',
+  DEVELOPER: 'DEVELOPER',
   ADMIN: 'ADMIN',
 });
 
@@ -96,6 +97,7 @@ const AUDIT_ACTIONS = Object.freeze({
   ASSET_DELETED: 'ASSET_DELETED',
   SETTINGS_CHANGED: 'SETTINGS_CHANGED',
   JOB_EXECUTED: 'JOB_EXECUTED',
+  REPORT_GENERATED: 'REPORT_GENERATED',
 });
 
 const DEFAULT_RISK_WEIGHTS = Object.freeze({
@@ -127,7 +129,7 @@ const DEFAULT_EXPOSURE_VALUES = Object.freeze({
   isolatedTest: 0.1,
 });
 
-const DEFAULT_DUPLICATE_THRESHOLD = 0.75;
+const DEFAULT_DUPLICATE_THRESHOLD = 0.70;
 const DEFAULT_SLA_WARNING_PERCENT = 75;
 
 module.exports = {

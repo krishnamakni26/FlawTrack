@@ -1,6 +1,6 @@
-# VulnTrack User Guide & Operations Manual
+# FlawTrack User Guide & Operations Manual
 
-Welcome to **VulnTrack — Smart Cybersecurity Vulnerability Reporting & Management System**.
+Welcome to **FlawTrack — Smart Cybersecurity Vulnerability Reporting & Management System**.
 
 ---
 
@@ -11,10 +11,10 @@ The application runs locally on:
 - **Backend API Server:** `http://localhost:5000/api/v1`
 
 ### Default System Accounts:
-- **Security Administrator:** `admin@vulntrack.local` / `Password123!`
-- **Senior Security Analyst:** `analyst1@vulntrack.local` / `Password123!`
-- **Junior Security Analyst:** `analyst2@vulntrack.local` / `Password123!`
-- **Security Researcher / Reporter:** `reporter1@vulntrack.local` / `Password123!`
+- **Security Administrator:** `admin@flawtrack.local` / `Password123!`
+- **Senior Security Analyst:** `analyst1@flawtrack.local` / `Password123!`
+- **Junior Security Analyst:** `analyst2@flawtrack.local` / `Password123!`
+- **Security Researcher / Reporter:** `reporter1@flawtrack.local` / `Password123!`
 
 ---
 

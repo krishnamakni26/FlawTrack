@@ -1,5 +1,5 @@
 /**
- * VulnTrack Conference Paper PDF Compiler
+ * FlawTrack Conference Paper PDF Compiler
  * Compiles a publication-ready two-column IEEE formatted PDF matching the ProComm conference template.
  * Uses headless Chrome via puppeteer-core for deterministic, pixel-perfect rendering.
  * Calibrated to exactly 7 pages with balanced columns on the final page.
@@ -21,7 +21,7 @@ function getImgDataUri(filename) {
 const fig1Data = getImgDataUri('fig1_methodology_flowchart.png');
 const fig2Data = getImgDataUri('fig2_system_architecture.png');
 const fig3Data = getImgDataUri('fig4_state_machine.png');
-const fig4Data = getImgDataUri('fig8_cvss_vs_vulntrack_ranking.png');
+const fig4Data = getImgDataUri('fig8_cvss_vs_flawtrack_ranking.png');
 const fig5Data = getImgDataUri('fig7_duplicate_metrics_curve.png');
 const fig6Data = getImgDataUri('fig6_risk_formula_breakdown.png');
 
@@ -325,7 +325,7 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="abstract-box">
-      Abstract - Contemporary cybersecurity operations face an acute triage crisis driven by the disclosure of tens of thousands of software vulnerabilities annually. Traditional remediation workflows rely predominantly on severity scores from the Common Vulnerability Scoring System, which quantify intrinsic technical severity while omitting exploitability likelihood and asset business importance. Consequently, security teams suffer from alert fatigue, duplicate triage effort, and arbitrary deadline management. This paper presents VulnTrack, an integrated vulnerability lifecycle management architecture combining contextual multi-factor risk prioritization, automated duplicate report detection, and deadline-driven remediation workflows. VulnTrack synthesizes technical severity with real-time threat intelligence from the Exploit Prediction Scoring System and the Cybersecurity and Infrastructure Security Agency Known Exploited Vulnerabilities catalog alongside asset business criticality and network exposure. Furthermore, natural language processing using term frequency and cosine similarity eliminates redundant reports. Evaluated across unit, integration, and empirical benchmark suites, VulnTrack achieves a seventy-five percent duplicate identification accuracy, demonstrates intelligent reprioritization that avoids alert fatigue on non-critical assets while elevating weaponized perimeter flaws, and enforces strict remediation service level agreements. This threat-informed approach establishes a defensible, explainable foundation for vulnerability management.
+      Abstract - Contemporary cybersecurity operations face an acute triage crisis driven by the disclosure of tens of thousands of software vulnerabilities annually. Traditional remediation workflows rely predominantly on severity scores from the Common Vulnerability Scoring System, which quantify intrinsic technical severity while omitting exploitability likelihood and asset business importance. Consequently, security teams suffer from alert fatigue, duplicate triage effort, and arbitrary deadline management. This paper presents FlawTrack, an integrated vulnerability lifecycle management architecture combining contextual multi-factor risk prioritization, automated duplicate report detection, and deadline-driven remediation workflows. FlawTrack synthesizes technical severity with real-time threat intelligence from the Exploit Prediction Scoring System and the Cybersecurity and Infrastructure Security Agency Known Exploited Vulnerabilities catalog alongside asset business criticality and network exposure. Furthermore, natural language processing using term frequency and cosine similarity eliminates redundant reports. Evaluated across unit, integration, and empirical benchmark suites, FlawTrack achieves a seventy-five percent duplicate identification accuracy, demonstrates intelligent reprioritization that avoids alert fatigue on non-critical assets while elevating weaponized perimeter flaws, and enforces strict remediation service level agreements. This threat-informed approach establishes a defensible, explainable foundation for vulnerability management.
     </div>
 
     <div class="index-terms-box">
@@ -340,7 +340,7 @@ const htmlContent = `<!DOCTYPE html>
 
     <p class="body-text">However, empirical security studies demonstrate that severity scores alone are a fundamentally flawed proxy for operational risk [3], [4]. CVSS measures technical characteristics under hypothetical worst-case exploitation conditions, disregarding whether weaponized exploits exist in the wild or whether the affected host resides in an isolated development environment or on an untrusted perimeter. As a result, remediation engineers spend vital resources patching theoretical high-severity flaws that attackers never weaponize, while moderately rated flaws with active, weaponized in-the-wild exploitation remain unaddressed [3], [5]. This operational misalignment is compounded by two structural shortcomings in contemporary vulnerability management: manual, error-prone duplicate triage from multiple reporting channels, and static remediation timelines detached from threat posture.</p>
 
-    <p class="body-text">To address these systematic deficiencies, this paper introduces VulnTrack, an integrated vulnerability reporting and lifecycle management platform. The central argument of this work is that handling vulnerabilities by severity score alone and through manual triage causes severe alert fatigue, duplicate engineering effort, and missed remediation windows. By uniting real-time threat intelligence feeds, granular asset context, automated text-similarity duplicate detection, and a deterministic deadline engine within a unified thirteen-stage lifecycle, organizations achieve defensible, explainable, and operationally realistic vulnerability prioritization. Specifically, this paper delivers the following contributions:</p>
+    <p class="body-text">To address these systematic deficiencies, this paper introduces FlawTrack, an integrated vulnerability reporting and lifecycle management platform. The central argument of this work is that handling vulnerabilities by severity score alone and through manual triage causes severe alert fatigue, duplicate engineering effort, and missed remediation windows. By uniting real-time threat intelligence feeds, granular asset context, automated text-similarity duplicate detection, and a deterministic deadline engine within a unified thirteen-stage lifecycle, organizations achieve defensible, explainable, and operationally realistic vulnerability prioritization. Specifically, this paper delivers the following contributions:</p>
 
     <ul class="bullet-list">
       <li>A multi-factor risk prioritization engine that computes composite risk from normalized CVSS technical severity, Exploit Prediction Scoring System (EPSS) probabilities, CISA Known Exploited Vulnerabilities (KEV) listings, asset criticality, business impact, and network exposure, coupled with deterministic safety overrides.</li>
@@ -429,7 +429,7 @@ const htmlContent = `<!DOCTYPE html>
             <td>Scanned session audit logs</td>
           </tr>
           <tr>
-            <td><strong>VulnTrack (Proposed)</strong></td>
+            <td><strong>FlawTrack (Proposed)</strong></td>
             <td>REST API, structured forms, manual</td>
             <td>Automated CISA KEV &amp; FIRST EPSS</td>
             <td>Criticality, data sensitivity, exposure</td>
@@ -446,17 +446,17 @@ const htmlContent = `<!DOCTYPE html>
   <!-- SECTION 2: Research Gap & Methodology Lead-in -->
   <div class="two-cols">
     <h2 class="heading-1">RESEARCH GAP</h2>
-    <p class="body-text">The literature reveals three primary structural gaps in existing vulnerability management: 1) disjointed threat and asset context, where platforms either focus purely on technical severity or proprietary exploit metrics without transparent mathematical asset weighting; 2) absent natural language deduplication, forcing analysts to manually triage identical or overlapping reports submitted across disparate teams and scanners; and 3) decoupled remediation workflows, where triage priority does not automatically drive enforceable, time-bounded remediation deadlines. VulnTrack is architected specifically to bridge these gaps into a single, unified, open platform.</p>
+    <p class="body-text">The literature reveals three primary structural gaps in existing vulnerability management: 1) disjointed threat and asset context, where platforms either focus purely on technical severity or proprietary exploit metrics without transparent mathematical asset weighting; 2) absent natural language deduplication, forcing analysts to manually triage identical or overlapping reports submitted across disparate teams and scanners; and 3) decoupled remediation workflows, where triage priority does not automatically drive enforceable, time-bounded remediation deadlines. FlawTrack is architected specifically to bridge these gaps into a single, unified, open platform.</p>
 
     <h2 class="heading-1">PROPOSED SYSTEM AND METHODOLOGY</h2>
-    <p class="body-text">VulnTrack structures vulnerability management into a deterministic thirteen-stage operational methodology covering the full lifecycle from discovery to archival. Fig. 1 illustrates this multi-stage pipeline across all operational tiers.</p>
+    <p class="body-text">FlawTrack structures vulnerability management into a deterministic thirteen-stage operational methodology covering the full lifecycle from discovery to archival. Fig. 1 illustrates this multi-stage pipeline across all operational tiers.</p>
   </div>
 
   <!-- FIGURE 1: Full-Width Methodology Flowchart -->
   <div class="full-width">
     <div class="figure-container full-width-figure">
-      <img src="${fig1Data}" alt="VulnTrack 13-Stage Methodology Flowchart">
-      <div class="caption-text">FIGURE 1. The thirteen-stage vulnerability lifecycle methodology in VulnTrack. The architecture integrates discovery, ingestion, validation, duplicate detection, threat-informed risk calculation, and SLA-governed remediation into an automated pipeline.</div>
+      <img src="${fig1Data}" alt="FlawTrack 13-Stage Methodology Flowchart">
+      <div class="caption-text">FIGURE 1. The thirteen-stage vulnerability lifecycle methodology in FlawTrack. The architecture integrates discovery, ingestion, validation, duplicate detection, threat-informed risk calculation, and SLA-governed remediation into an automated pipeline.</div>
     </div>
   </div>
 
@@ -465,7 +465,7 @@ const htmlContent = `<!DOCTYPE html>
     <p class="body-text">As depicted in Fig. 1, the lifecycle proceeds through: 1) Discovery via scanning or pentesting; 2) Reporting via structured API or UI; 3) Analyst Validation; 4) Natural Language Deduplication; 5) Weakness Classification (CWE/CVE); 6) CVSS Vector Scoring; 7) Threat Intelligence Ingestion (EPSS and KEV); 8) Contextual Risk Calculation; 9) SLA Deadline Computation; 10) Engineering Assignment; 11) Remediation &amp; Mitigation; 12) Retest Verification; and 13) Resolution &amp; Closure. In parallel, continuous monitoring crons re-evaluate active vulnerabilities against threat updates.</p>
 
     <h3 class="heading-2">I. Mathematical Risk Prioritization Model</h3>
-    <p class="body-text">To achieve a defensible, multi-dimensional score, VulnTrack computes a composite risk score <i>R</i> &isin; [0, 100] as a linear combination of six normalized parameters:</p>
+    <p class="body-text">To achieve a defensible, multi-dimensional score, FlawTrack computes a composite risk score <i>R</i> &isin; [0, 100] as a linear combination of six normalized parameters:</p>
 
     <div class="equation-container">
       <div class="equation-math">
@@ -478,11 +478,11 @@ const htmlContent = `<!DOCTYPE html>
 
     <p class="body-text">The input normalization routines are defined as follows: 1) <i>C</i><sub>norm</sub> = <i>C</i> / 10.0 normalizes the CVSS base score <i>C</i> &isin; [0, 10] to [0, 1]; 2) <i>E</i> &isin; [0, 1] represents the raw EPSS probability; 3) <i>K</i> &isin; {0, 1} is a binary indicator set to 1 if the CVE appears in the CISA KEV catalog; 4) <i>A</i><sub>norm</sub> = (<i>A</i> &minus; 1) / 4.0 normalizes asset criticality <i>A</i> &isin; {1, 2, 3, 4, 5}; 5) <i>B</i><sub>norm</sub> = 0.5<i>D</i><sub>norm</sub> + 0.5<i>U</i><sub>norm</sub> combines data sensitivity <i>D</i> &isin; {1, 2, 3, 4, 5} and affected user count log-tiers <i>U</i> &isin; {0.1, 0.3, 0.6, 0.8, 1.0}; and 6) <i>X</i><sub>norm</sub> assigns exposure values: 1.0 for internet-facing production, 0.7 for internet-facing non-production, 0.4 for internal networks, and 0.1 for isolated sandboxes.</p>
 
-    <p class="body-text">The computed score <i>R</i> maps to priority tiers based on default thresholds: P1 (Critical) for <i>R</i> &ge; 70; P2 (High) for 50 &le; <i>R</i> &lt; 70; P3 (Medium) for 30 &le; <i>R</i> &lt; 50; and P4 (Low) for <i>R</i> &lt; 30. To prevent hazardous false negatives, VulnTrack enforces two non-negotiable safeguard overrides: 1) any vulnerability present in CISA KEV on an internet-facing asset is automatically floored at P1 regardless of base score; and 2) any vulnerability with CVSS base score &ge; 9.0 is floored at P2, preventing critical architectural flaws from ever dropping to low priority. Table 2 summarizes the components and mathematical formulations.</p>
+    <p class="body-text">The computed score <i>R</i> maps to priority tiers based on default thresholds: P1 (Critical) for <i>R</i> &ge; 70; P2 (High) for 50 &le; <i>R</i> &lt; 70; P3 (Medium) for 30 &le; <i>R</i> &lt; 50; and P4 (Low) for <i>R</i> &lt; 30. To prevent hazardous false negatives, FlawTrack enforces two non-negotiable safeguard overrides: 1) any vulnerability present in CISA KEV on an internet-facing asset is automatically floored at P1 regardless of base score; and 2) any vulnerability with CVSS base score &ge; 9.0 is floored at P2, preventing critical architectural flaws from ever dropping to low priority. Table 2 summarizes the components and mathematical formulations.</p>
 
     <!-- TABLE 2: Risk Formula Components -->
     <div class="table-container">
-      <div class="table-title">TABLE 2. VulnTrack Multi-Factor Risk Model Components</div>
+      <div class="table-title">TABLE 2. FlawTrack Multi-Factor Risk Model Components</div>
       <table class="academic-table">
         <thead>
           <tr>
@@ -534,16 +534,16 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <h2 class="heading-1">IMPLEMENTATION</h2>
-    <p class="body-text">VulnTrack is implemented as a full-stack, decoupled architecture. The backend service is built in Node.js and Express, exposing RESTful endpoints with Mongoose ODM over a MongoDB document database. The user interface is developed in React with Vite and TailwindCSS. Fig. 2 illustrates the modular system architecture.</p>
+    <p class="body-text">FlawTrack is implemented as a full-stack, decoupled architecture. The backend service is built in Node.js and Express, exposing RESTful endpoints with Mongoose ODM over a MongoDB document database. The user interface is developed in React with Vite and TailwindCSS. Fig. 2 illustrates the modular system architecture.</p>
 
     <!-- FIGURE 2: System Architecture -->
     <div class="figure-container">
       <img src="${fig2Data}" alt="System Architecture Diagram">
-      <div class="caption-text">FIGURE 2. Modular system architecture of VulnTrack, detailing decoupled API routing, business services, Mongo database collections, and background crons.</div>
+      <div class="caption-text">FIGURE 2. Modular system architecture of FlawTrack, detailing decoupled API routing, business services, Mongo database collections, and background crons.</div>
     </div>
 
     <h3 class="heading-2">I. Role-Based Access Control and State Machine</h3>
-    <p class="body-text">VulnTrack enforces Role-Based Access Control (RBAC) across four roles: Reporter, Analyst, Developer, and Admin. Triage progression is strictly governed by a formal finite state machine encompassing fifteen discrete statuses. Fig. 3 depicts the state transition model.</p>
+    <p class="body-text">FlawTrack enforces Role-Based Access Control (RBAC) across four roles: Reporter, Analyst, Developer, and Admin. Triage progression is strictly governed by a formal finite state machine encompassing fifteen discrete statuses. Fig. 3 depicts the state transition model.</p>
 
     <!-- FIGURE 3: State Machine Diagram -->
     <div class="figure-container">
@@ -569,10 +569,10 @@ const htmlContent = `<!DOCTYPE html>
     <p class="body-text">The SLA service dynamically computes remediation deadlines based on prioritized tiers: P1 requires resolution within 24 hours; P2 within 72 hours; P3 within 168 hours (7 days); and P4 within 720 hours (30 days). A background cron job executes every 15 minutes, calculating elapsed time. When 75% of the allowable window elapses, the system dispatches warning notifications; upon window expiration, the vulnerability is flagged as breached. All status transitions, risk recalculations, and administrative modifications are written to an append-only cryptographic audit log recording timestamps, actor IDs, IP addresses, and state diffs. Security controls include JWT authentication via httpOnly cookies, rate limiting, and strict Multer file upload filters enforcing allowable extensions (.png, .jpg, .pdf, .txt, .log) and MIME types.</p>
 
     <h2 class="heading-1">EVALUATION AND RESULTS</h2>
-    <p class="body-text">All reported evaluation metrics were measured through direct execution of test suites and empirical experiments within the VulnTrack workspace. Raw execution outputs are archived in the project evidence repository.</p>
+    <p class="body-text">All reported evaluation metrics were measured through direct execution of test suites and empirical experiments within the FlawTrack workspace. Raw execution outputs are archived in the project evidence repository.</p>
 
     <h3 class="heading-2">I. Subsystem Test Suite and Code Coverage</h3>
-    <p class="body-text">The backend test suite was executed using Jest against an in-memory MongoDB replica. Across nine test suites containing 51 automated unit and integration tests, VulnTrack achieved a 100% pass rate (51 passed, 0 failed). Table 3 details code coverage metrics across all service subsystems, demonstrating an overall line coverage of 81.46%, with core logic services (Risk Engine and State Machine) exceeding 93% line coverage.</p>
+    <p class="body-text">The backend test suite was executed using Jest against an in-memory MongoDB replica. Across nine test suites containing 51 automated unit and integration tests, FlawTrack achieved a 100% pass rate (51 passed, 0 failed). Table 3 details code coverage metrics across all service subsystems, demonstrating an overall line coverage of 81.46%, with core logic services (Risk Engine and State Machine) exceeding 93% line coverage.</p>
 
     <!-- TABLE 3: Code Coverage Summary -->
     <div class="table-container">
@@ -656,7 +656,7 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <h3 class="heading-2">II. Risk Engine Validation and Prioritization Shifts</h3>
-    <p class="body-text">To validate that multi-factor scoring resolves the deficiencies of severity-only triage, seven diverse vulnerability scenarios were processed through the risk engine. Table 4 presents the experimental inputs and outcomes, highlighting the shift from CVSS-only triage to VulnTrack risk priority.</p>
+    <p class="body-text">To validate that multi-factor scoring resolves the deficiencies of severity-only triage, seven diverse vulnerability scenarios were processed through the risk engine. Table 4 presents the experimental inputs and outcomes, highlighting the shift from CVSS-only triage to FlawTrack risk priority.</p>
   </div>
 
   <!-- TABLE 4: Worked Test Scenarios (Full Width) -->
@@ -675,7 +675,7 @@ const htmlContent = `<!DOCTYPE html>
             <th>Exposure</th>
             <th>CVSS Tier</th>
             <th>Score</th>
-            <th>VulnTrack</th>
+            <th>FlawTrack</th>
             <th>Prioritization Shift Rationale</th>
           </tr>
         </thead>
@@ -778,12 +778,12 @@ const htmlContent = `<!DOCTYPE html>
 
   <!-- SECTION 4: Analysis, Figures 4, 5, 6, Discussion, Conclusion, References -->
   <div class="two-cols">
-    <p class="body-text">The data reveals clear operational advantages over CVSS-only triage. In CASE-1, an unweaponized CVSS 9.8 flaw residing in an isolated development sandbox dropped from a critical P1 to a manageable P2, preventing costly emergency weekend escalations. In contrast, CASE-2 and CASE-5 represent medium-severity vulnerabilities (CVSS 6.5 and 5.3) that standard enterprise policies would delay for 30 days; however, because they have active CISA KEV listings and high EPSS probabilities on perimeter assets, VulnTrack elevated both to P1, enforcing an emergency 24-hour remediation window. Fig. 4 illustrates the priority order inversion.</p>
+    <p class="body-text">The data reveals clear operational advantages over CVSS-only triage. In CASE-1, an unweaponized CVSS 9.8 flaw residing in an isolated development sandbox dropped from a critical P1 to a manageable P2, preventing costly emergency weekend escalations. In contrast, CASE-2 and CASE-5 represent medium-severity vulnerabilities (CVSS 6.5 and 5.3) that standard enterprise policies would delay for 30 days; however, because they have active CISA KEV listings and high EPSS probabilities on perimeter assets, FlawTrack elevated both to P1, enforcing an emergency 24-hour remediation window. Fig. 4 illustrates the priority order inversion.</p>
 
     <!-- FIGURE 4: Priority Ranking Comparison Chart -->
     <div class="figure-container">
-      <img src="${fig4Data}" alt="CVSS vs VulnTrack Ranking Chart">
-      <div class="caption-text">FIGURE 4. Comparison of vulnerability rankings under CVSS base severity versus VulnTrack contextual risk scores across benchmark test cases.</div>
+      <img src="${fig4Data}" alt="CVSS vs FlawTrack Ranking Chart">
+      <div class="caption-text">FIGURE 4. Comparison of vulnerability rankings under CVSS base severity versus FlawTrack contextual risk scores across benchmark test cases.</div>
     </div>
 
     <h3 class="heading-2">III. Duplicate Detection Benchmark</h3>
@@ -876,15 +876,15 @@ const htmlContent = `<!DOCTYPE html>
     <p class="body-text">System security controls were validated through targeted penetration tests and dependency audits. Insecure direct object reference (IDOR) tests confirmed that non-administrative users are blocked from viewing or modifying vulnerabilities assigned to separate organizations. Arbitrary file upload tests utilizing double extensions (e.g., <code>shell.php.png</code>) were successfully trapped and rejected by the upload middleware. An automated <code>npm audit</code> verification confirmed zero critical vulnerabilities in root backend runtime dependencies.</p>
 
     <h2 class="heading-1">DISCUSSION</h2>
-    <p class="body-text">The empirical findings confirm the central hypothesis: multi-factor risk prioritization drastically enhances the operational efficiency and defensibility of vulnerability management. In conventional CVSS-driven programs, enterprise security teams suffer from triage paralysis because over 40% of all published vulnerabilities receive High or Critical base scores. VulnTrack cuts through this noise by differentiating between theoretical severity and active weaponization. Security leadership can justify remediation deferrals on low-exposure assets while rigorously enforcing 24-hour response times on weaponized threats.</p>
+    <p class="body-text">The empirical findings confirm the central hypothesis: multi-factor risk prioritization drastically enhances the operational efficiency and defensibility of vulnerability management. In conventional CVSS-driven programs, enterprise security teams suffer from triage paralysis because over 40% of all published vulnerabilities receive High or Critical base scores. FlawTrack cuts through this noise by differentiating between theoretical severity and active weaponization. Security leadership can justify remediation deferrals on low-exposure assets while rigorously enforcing 24-hour response times on weaponized threats.</p>
 
     <p class="body-text">Threats to validity include: 1) the duplicate detection dataset is synthetic and small in scale (24 pairs), which may not capture the full syntactic diversity of real-world enterprise pentest repositories; 2) default formula weights were established based on expert heuristics rather than historical enterprise breach data; and 3) the system relies on external API availability for live EPSS and KEV feeds, although offline fallback snapshots are implemented to mitigate upstream feed outages.</p>
 
     <h2 class="heading-1">LIMITATIONS AND FUTURE WORK</h2>
-    <p class="body-text">While VulnTrack establishes a robust foundation, several architectural limitations remain. Currently, the platform relies on manual reporting and structured REST payloads, lacking native automated parsers for Nessus XML or Burp Suite scan outputs. Second, the duplicate detection engine employs classical TF-IDF and Porter stemming, which struggles with paraphrased semantic descriptions that share no common root words; integrating dense vector embeddings from transformer models (e.g., fine-tuned RoBERTa) would substantially improve recall. Third, the system currently supports CVSS v3.1, lacking integration with the newly finalized CVSS v4.0 specification. Future work will focus on embedding-based semantic deduplication, automated scanner connectors, and federated multi-tenant queuing.</p>
+    <p class="body-text">While FlawTrack establishes a robust foundation, several architectural limitations remain. Currently, the platform relies on manual reporting and structured REST payloads, lacking native automated parsers for Nessus XML or Burp Suite scan outputs. Second, the duplicate detection engine employs classical TF-IDF and Porter stemming, which struggles with paraphrased semantic descriptions that share no common root words; integrating dense vector embeddings from transformer models (e.g., fine-tuned RoBERTa) would substantially improve recall. Third, the system currently supports CVSS v3.1, lacking integration with the newly finalized CVSS v4.0 specification. Future work will focus on embedding-based semantic deduplication, automated scanner connectors, and federated multi-tenant queuing.</p>
 
     <h2 class="heading-1">CONCLUSION</h2>
-    <p class="body-text">Prioritizing software vulnerabilities by severity scores alone is an outdated, high-risk paradigm that overwhelms enterprise defenders while leaving weaponized edge assets exposed. This paper presented VulnTrack, a full-stack vulnerability lifecycle management platform that integrates CVSS technical severity with EPSS exploit probabilities, CISA KEV weaponization data, granular asset business context, and automated NLP duplicate detection. Empirical evaluation across 51 system tests and seven benchmark scenarios confirms that threat-informed prioritization eliminates alert fatigue, enforces rigorous remediation deadlines, and provides an explainable foundation for enterprise cyber defense.</p>
+    <p class="body-text">Prioritizing software vulnerabilities by severity scores alone is an outdated, high-risk paradigm that overwhelms enterprise defenders while leaving weaponized edge assets exposed. This paper presented FlawTrack, a full-stack vulnerability lifecycle management platform that integrates CVSS technical severity with EPSS exploit probabilities, CISA KEV weaponization data, granular asset business context, and automated NLP duplicate detection. Empirical evaluation across 51 system tests and seven benchmark scenarios confirms that threat-informed prioritization eliminates alert fatigue, enforces rigorous remediation deadlines, and provides an explainable foundation for enterprise cyber defense.</p>
   </div>
 
     <!-- REFERENCES SECTION: Balanced Two Columns on Final Page -->
@@ -926,7 +926,7 @@ async function compilePdf() {
   const page = await browser.newPage();
   await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
 
-  const outputPath = path.resolve(__dirname, '../VulnTrack_Paper.pdf');
+  const outputPath = path.resolve(__dirname, '../FlawTrack_Paper.pdf');
   await page.pdf({
     path: outputPath,
     format: 'Letter',
@@ -941,7 +941,7 @@ async function compilePdf() {
   });
 
   await browser.close();
-  console.log('Successfully generated VulnTrack_Paper.pdf at:', outputPath);
+  console.log('Successfully generated FlawTrack_Paper.pdf at:', outputPath);
   const stats = fs.statSync(outputPath);
   console.log('PDF File Size:', Math.round(stats.size / 1024), 'KB');
 }

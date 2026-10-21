@@ -84,5 +84,98 @@ describe('Duplicate Detection Service', () => {
 
       expect(scoreWithMatchingCve).toBeGreaterThan(scoreWithDifferentCve);
     });
+
+    test('handles empty strings, special characters, and short text without crashing', () => {
+      expect(() => {
+        const score = DuplicateService.computeScore({}, {});
+        expect(score).toBe(0);
+      }).not.toThrow();
+
+      expect(() => {
+        const score = DuplicateService.computeScore(
+          { title: '!@#$%^&*()', description: '123 456' },
+          { title: '...', description: '   ' }
+        );
+        expect(score).toBe(0);
+      }).not.toThrow();
+
+      expect(DuplicateService.preprocessText('')).toEqual([]);
+      expect(DuplicateService.preprocessText(null)).toEqual([]);
+      expect(DuplicateService.preprocessText('a to the is')).toEqual([]);
+    });
+  });
+
+  describe('Database Duplicate Queries & Filters', () => {
+    test('never matches report against itself or against REJECTED items', async () => {
+      const Vulnerability = require('../../src/models/Vulnerability');
+      const mongoose = require('mongoose');
+
+      const existingId = new mongoose.Types.ObjectId();
+      const rejectedId = new mongoose.Types.ObjectId();
+      const duplicateId = new mongoose.Types.ObjectId();
+      const validTargetId = new mongoose.Types.ObjectId();
+
+      const userId = new mongoose.Types.ObjectId();
+
+      // Seed mock records with all required fields
+      await Vulnerability.create([
+        {
+          _id: existingId,
+          title: 'Remote Buffer Overflow in Auth Daemon',
+          description: 'Buffer overflow vulnerability in authentication daemon parser.',
+          stepsToReproduce: 'Send 5000 bytes payload to auth socket',
+          impactDescription: 'Remote code execution as root',
+          reportedBy: userId,
+          status: 'OPEN',
+        },
+        {
+          _id: rejectedId,
+          title: 'Remote Buffer Overflow in Auth Daemon',
+          description: 'Buffer overflow vulnerability in authentication daemon parser.',
+          stepsToReproduce: 'Send 5000 bytes payload to auth socket',
+          impactDescription: 'Remote code execution as root',
+          reportedBy: userId,
+          status: 'REJECTED',
+        },
+        {
+          _id: duplicateId,
+          title: 'Remote Buffer Overflow in Auth Daemon',
+          description: 'Buffer overflow vulnerability in authentication daemon parser.',
+          stepsToReproduce: 'Send 5000 bytes payload to auth socket',
+          impactDescription: 'Remote code execution as root',
+          reportedBy: userId,
+          status: 'DUPLICATE',
+        },
+      ]);
+
+      const target = {
+        _id: existingId,
+        title: 'Remote Buffer Overflow in Auth Daemon',
+        description: 'Buffer overflow vulnerability in authentication daemon parser.',
+        stepsToReproduce: 'Send 5000 bytes payload to auth socket',
+        impactDescription: 'Remote code execution as root',
+      };
+
+      // Search duplicates for existingId without passing excludeId
+      const result = await DuplicateService.findDuplicates(target);
+
+      // Verify existingId is not matched against itself
+      const matchedSelf = result.matches.some(
+        (m) => m.vulnerabilityId.toString() === existingId.toString()
+      );
+      expect(matchedSelf).toBe(false);
+
+      // Verify rejectedId is excluded
+      const matchedRejected = result.matches.some(
+        (m) => m.vulnerabilityId.toString() === rejectedId.toString()
+      );
+      expect(matchedRejected).toBe(false);
+
+      // Verify duplicateId is excluded
+      const matchedDuplicate = result.matches.some(
+        (m) => m.vulnerabilityId.toString() === duplicateId.toString()
+      );
+      expect(matchedDuplicate).toBe(false);
+    });
   });
 });

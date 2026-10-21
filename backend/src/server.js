@@ -7,6 +7,16 @@ const logger = require('./utils/logger');
 
 let server = null;
 
+// Graceful process error handlers
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Promise Rejection:', { reason: reason?.message || reason, stack: reason?.stack });
+});
+
+process.on('uncaughtException', (error) => {
+  logger.error(`Uncaught Exception: ${error.message}`, { stack: error.stack });
+  // Avoid abrupt exit if possible, or close server cleanly
+});
+
 const startServer = async () => {
   try {
     await connectDB();
@@ -26,10 +36,13 @@ const startServer = async () => {
     // Initialize scheduled cron jobs
     initCronJobs();
 
-    // Start HTTP Server
-    server = app.listen(env.PORT, () => {
-      logger.info(`VulnTrack Backend Server running on port ${env.PORT} in [${env.NODE_ENV}] mode`);
-      logger.info(`Health check available at http://localhost:${env.PORT}/health`);
+    // Port and Host binding
+    const PORT = parseInt(process.env.PORT || env.PORT || 5000, 10);
+    const HOST = '0.0.0.0';
+
+    server = app.listen(PORT, HOST, () => {
+      logger.info(`FlawTrack Backend Server running on http://${HOST}:${PORT} in [${env.NODE_ENV}] mode`);
+      logger.info(`Health check available at http://${HOST}:${PORT}/api/health`);
     });
 
     // Graceful Shutdown Handlers

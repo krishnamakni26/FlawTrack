@@ -63,16 +63,22 @@ describe('Vulnerability State Machine Service', () => {
       ).toBe(false);
     });
 
-    test('throws HTTP 409 Conflict when transition is attempted illegally', async () => {
+    test('throws HTTP 409 Conflict when transition is attempted illegally and writes no change', async () => {
       const mockVuln = {
         status: VULN_STATUSES.SUBMITTED,
         save: jest.fn(),
       };
       const analystUser = { _id: '123', role: ROLES.ANALYST };
 
-      await expect(
-        StateMachineService.transition(mockVuln, VULN_STATUSES.CLOSED, analystUser)
-      ).rejects.toThrow('Invalid status transition');
+      try {
+        await StateMachineService.transition(mockVuln, VULN_STATUSES.CLOSED, analystUser);
+        throw new Error('Should have thrown 409 error');
+      } catch (err) {
+        expect(err.statusCode).toBe(409);
+        expect(err.code).toBe('INVALID_STATUS_TRANSITION');
+        expect(mockVuln.save).not.toHaveBeenCalled();
+        expect(mockVuln.status).toBe(VULN_STATUSES.SUBMITTED);
+      }
     });
   });
 });

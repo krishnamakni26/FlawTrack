@@ -1,6 +1,6 @@
-# VulnTrack Literature Verification Ledger — UNVERIFIED.md
+# FlawTrack Literature Verification Ledger — UNVERIFIED.md
 
-This document records the verification status of all candidate references inspected during the literature review for the VulnTrack academic paper. In accordance with strict academic integrity rules, any source that could not be independently browsed, authenticated, or verified with exact bibliographic metadata has been excluded from the final paper.
+This document records the verification status of all candidate references inspected during the literature review for the FlawTrack academic paper. In accordance with strict academic integrity rules, any source that could not be independently browsed, authenticated, or verified with exact bibliographic metadata has been excluded from the final paper.
 
 ---
 
@@ -54,7 +54,7 @@ The following candidates were investigated during background research but were *
 1. *Unpublished whitepapers on proprietary AI triage bots (2024)*
    - **Reason for Exclusion**: Marketing-oriented whitepapers lacking peer-reviewed experimental methodology or reproducible datasets.
 2. *Preprints on CVSS v4.0 enterprise transition (2024)*
-   - **Reason for Exclusion**: Non-archival working preprints without formal publication citations; VulnTrack's current implementation implements CVSS v3.1.
+   - **Reason for Exclusion**: Non-archival working preprints without formal publication citations; FlawTrack's current implementation implements CVSS v3.1.
 3. *Commercial press releases regarding automated bug bounty deduplication*
    - **Reason for Exclusion**: Commercial vendor marketing lacking verifiable academic peer review or technical specification documents.
 

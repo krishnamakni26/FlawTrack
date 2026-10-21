@@ -41,7 +41,7 @@ export const RegisterPage = () => {
             Register Security Reporter
           </h1>
           <p className="text-xs font-mono text-cyan-400/90 mt-1">
-            VulnTrack Vulnerability Disclosure Platform
+            FlawTrack Vulnerability Disclosure Platform
           </p>
         </div>
 

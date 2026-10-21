@@ -71,15 +71,15 @@ class NotificationService {
       const user = await User.findById(userId);
       if (user && user.email) {
         const transporter = await NotificationService.getTransporter();
-        const subject = emailSubject || `[VulnTrack Alert] ${type.replace(/_/g, ' ')}`;
+        const subject = emailSubject || `[FlawTrack Alert] ${type.replace(/_/g, ' ')}`;
         const html = emailHtml || `
           <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-            <h2 style="color: #2563eb;">VulnTrack Notification</h2>
+            <h2 style="color: #2563eb;">FlawTrack Notification</h2>
             <p><strong>Type:</strong> ${type}</p>
             <p>${message}</p>
-            ${vulnerabilityId ? `<p><a href="${env.FRONTEND_URL}/vulnerabilities/${vulnerabilityId}">View Vulnerability in VulnTrack</a></p>` : ''}
+            ${vulnerabilityId ? `<p><a href="${env.FRONTEND_URL}/vulnerabilities/${vulnerabilityId}">View Vulnerability in FlawTrack</a></p>` : ''}
             <hr style="border: 1px solid #eee; margin-top: 20px;" />
-            <small style="color: #777;">This is an automated security notification from VulnTrack.</small>
+            <small style="color: #777;">This is an automated security notification from FlawTrack.</small>
           </div>
         `;
 

@@ -19,6 +19,7 @@ import { AssetManagementPage } from './pages/admin/AssetManagementPage';
 import { SystemSettingsPage } from './pages/admin/SystemSettingsPage';
 import { AuditLogPage } from './pages/admin/AuditLogPage';
 import { JobControlPage } from './pages/admin/JobControlPage';
+import { ReportsPage } from './pages/reports/ReportsPage';
 
 // Protected Route wrapper with role checks
 const ProtectedLayout = ({ allowedRoles }) => {
@@ -76,25 +77,31 @@ export const App = () => {
             {/* Authenticated Root */}
             <Route path="/" element={<HomeRedirect />} />
 
-            {/* Common / Reporter Routes */}
-            <Route element={<ProtectedLayout allowedRoles={['REPORTER', 'ANALYST', 'ADMIN']} />}>
+            {/* Common / Reporter & Staff Routes */}
+            <Route element={<ProtectedLayout allowedRoles={['REPORTER', 'ANALYST', 'ADMIN', 'DEVELOPER']} />}>
               <Route path="/submit" element={<SubmitVulnerabilityPage />} />
               <Route path="/my-reports" element={<MyReportsPage />} />
               <Route path="/vulnerabilities/:id" element={<VulnerabilityDetailPage />} />
             </Route>
 
-            {/* Analyst & Admin Routes */}
-            <Route element={<ProtectedLayout allowedRoles={['ANALYST', 'ADMIN']} />}>
+            {/* Analyst, Admin & Developer Operations Routes */}
+            <Route element={<ProtectedLayout allowedRoles={['ANALYST', 'ADMIN', 'DEVELOPER']} />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/queue" element={<PriorityQueuePage />} />
+              <Route path="/reports" element={<ReportsPage />} />
+              <Route path="/assets" element={<AssetManagementPage />} />
               <Route path="/admin/assets" element={<AssetManagementPage />} />
             </Route>
 
             {/* Admin-Only Routes */}
             <Route element={<ProtectedLayout allowedRoles={['ADMIN']} />}>
+              <Route path="/users" element={<UserManagementPage />} />
               <Route path="/admin/users" element={<UserManagementPage />} />
+              <Route path="/settings" element={<SystemSettingsPage />} />
               <Route path="/admin/settings" element={<SystemSettingsPage />} />
+              <Route path="/audit" element={<AuditLogPage />} />
               <Route path="/admin/audit" element={<AuditLogPage />} />
+              <Route path="/jobs" element={<JobControlPage />} />
               <Route path="/admin/jobs" element={<JobControlPage />} />
             </Route>
 

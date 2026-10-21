@@ -15,7 +15,7 @@ const CvssService = require('../src/services/cvss.service');
 const logger = require('../src/utils/logger');
 
 async function seed(shouldDisconnect = true) {
-  logger.info('Starting VulnTrack database seed...');
+  logger.info('Starting FlawTrack database seed...');
   if (mongoose.connection.readyState !== 1) {
     await connectDB();
   }
@@ -50,7 +50,7 @@ async function seed(shouldDisconnect = true) {
   const users = await User.create([
     {
       name: 'Security Admin',
-      email: 'admin@vulntrack.local',
+      email: 'admin@flawtrack.local',
       passwordHash,
       role: ROLES.ADMIN,
       team: 'SecOps Leadership',
@@ -59,7 +59,7 @@ async function seed(shouldDisconnect = true) {
     },
     {
       name: 'Sarah Connor (Senior Analyst)',
-      email: 'analyst1@vulntrack.local',
+      email: 'analyst1@flawtrack.local',
       passwordHash,
       role: ROLES.ANALYST,
       team: 'AppSec Engineering',
@@ -67,8 +67,17 @@ async function seed(shouldDisconnect = true) {
       lastLoginAt: new Date(Date.now() - 3600 * 1000),
     },
     {
+      name: 'Dave Nelson (Lead Developer)',
+      email: 'developer1@flawtrack.local',
+      passwordHash,
+      role: ROLES.DEVELOPER,
+      team: 'Core Platform Engineering',
+      isActive: true,
+      lastLoginAt: new Date(Date.now() - 14400 * 1000),
+    },
+    {
       name: 'Alex Murphy (Security Analyst)',
-      email: 'analyst2@vulntrack.local',
+      email: 'analyst2@flawtrack.local',
       passwordHash,
       role: ROLES.ANALYST,
       team: 'SOC & Triage',
@@ -77,7 +86,7 @@ async function seed(shouldDisconnect = true) {
     },
     {
       name: 'Bob Miller (Security Researcher)',
-      email: 'reporter1@vulntrack.local',
+      email: 'reporter1@flawtrack.local',
       passwordHash,
       role: ROLES.REPORTER,
       team: 'Red Team / Pentest',
@@ -86,7 +95,7 @@ async function seed(shouldDisconnect = true) {
     },
   ]);
 
-  const [admin, analyst1, analyst2, reporter1] = users;
+  const [admin, analyst1, developer1, analyst2, reporter1] = users;
   logger.info(`Seeded ${users.length} users with password: ${defaultPassword}`);
 
   // 3. Seed Assets (10 realistic assets)
@@ -615,7 +624,7 @@ async function seed(shouldDisconnect = true) {
       entityId: createdVulns[1]._id,
       after: { priority: 'P1', dueAt: createdVulns[1].sla.dueAt },
       ip: '127.0.0.1',
-      userAgent: 'VulnTrack Cron SLA Monitor',
+      userAgent: 'FlawTrack Cron SLA Monitor',
       timestamp: daysAgo(1),
     },
   ];
@@ -624,12 +633,12 @@ async function seed(shouldDisconnect = true) {
   logger.info('Seeded immutable audit log entries.');
 
   logger.info('========================================================');
-  logger.info('VulnTrack Database Seeding Completed Successfully!');
+  logger.info('FlawTrack Database Seeding Completed Successfully!');
   logger.info('Available Credentials:');
-  logger.info('  Admin:    admin@vulntrack.local    / Password123!');
-  logger.info('  Analyst:  analyst1@vulntrack.local / Password123!');
-  logger.info('  Analyst:  analyst2@vulntrack.local / Password123!');
-  logger.info('  Reporter: reporter1@vulntrack.local / Password123!');
+  logger.info('  Admin:     admin@flawtrack.local      / Password123!');
+  logger.info('  Analyst:   analyst1@flawtrack.local   / Password123!');
+  logger.info('  Developer: developer1@flawtrack.local  / Password123!');
+  logger.info('  Reporter:  reporter1@flawtrack.local  / Password123!');
   logger.info('========================================================');
 
   if (shouldDisconnect) {

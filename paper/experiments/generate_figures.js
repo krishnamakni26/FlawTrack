@@ -1,5 +1,5 @@
 /**
- * VulnTrack Figure Generator
+ * FlawTrack Figure Generator
  * Generates publication-ready SVG and PNG figures for the IEEE paper.
  */
 
@@ -41,7 +41,7 @@ const fig1Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" 
     </filter>
   </defs>
 
-  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 1. The 13-Stage Vulnerability Management &amp; Prioritization Lifecycle in VulnTrack</text>
+  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 1. The 13-Stage Vulnerability Management &amp; Prioritization Lifecycle in FlawTrack</text>
 
   <!-- Row 1: Stages 1 to 5 (Ingestion, Validation, Deduplication, Classification) -->
   <!-- Stage 1 -->
@@ -200,7 +200,7 @@ const fig2Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" 
     </filter>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 2. VulnTrack Three-Tier Enterprise System Architecture</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 2. FlawTrack Three-Tier Enterprise System Architecture</text>
 
   <!-- Tier 1: Client Layer -->
   <rect x="50" y="65" width="1100" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
@@ -306,7 +306,7 @@ const fig4Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" 
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 4. VulnTrack Vulnerability Status Finite State Machine (FSM)</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 4. FlawTrack Vulnerability Status Finite State Machine (FSM)</text>
 
   <!-- Initial State: SUBMITTED -->
   <circle cx="90" cy="180" r="30" fill="#3b82f6"/>
@@ -656,10 +656,10 @@ const fig7Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" w
 fs.writeFileSync(path.join(figuresDir, 'fig7_duplicate_metrics_curve.svg'), fig7Svg);
 
 // -------------------------------------------------------------
-// Figure 8: Priority Ranking Comparison (CVSS vs VulnTrack)
+// Figure 8: Priority Ranking Comparison (CVSS vs FlawTrack)
 // -------------------------------------------------------------
 const fig8Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" width="1100" height="550" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
-  <text x="550" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 8. Priority Shift: Standard CVSS Base Severity vs. VulnTrack Contextual Risk Tiers</text>
+  <text x="550" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f172a">Fig. 8. Priority Shift: Standard CVSS Base Severity vs. FlawTrack Contextual Risk Tiers</text>
   <text x="550" y="60" text-anchor="middle" font-size="12" fill="#64748b">Comparison of 7 Representative Findings Illustrating Deprioritization and Threat Elevation</text>
 
   <!-- Table Header -->
@@ -669,7 +669,7 @@ const fig8Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" 
     <text x="80" y="23" font-size="11" font-weight="bold" fill="#ffffff">SCENARIO DESCRIPTION</text>
     <text x="440" y="23" font-size="11" font-weight="bold" fill="#ffffff">CVSS ONLY</text>
     <text x="560" y="23" font-size="11" font-weight="bold" fill="#ffffff">SCORE</text>
-    <text x="640" y="23" font-size="11" font-weight="bold" fill="#ffffff">VULNTRACK</text>
+    <text x="640" y="23" font-size="11" font-weight="bold" fill="#ffffff">FLAWTRACK</text>
     <text x="760" y="23" font-size="11" font-weight="bold" fill="#ffffff">TACTICAL SHIFT &amp; REASONING</text>
   </g>
 
@@ -772,7 +772,7 @@ const fig8Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" 
   </g>
 </svg>`;
 
-fs.writeFileSync(path.join(figuresDir, 'fig8_cvss_vs_vulntrack_ranking.svg'), fig8Svg);
+fs.writeFileSync(path.join(figuresDir, 'fig8_cvss_vs_flawtrack_ranking.svg'), fig8Svg);
 
 // -------------------------------------------------------------
 // Figure 3: ER Data Model Diagram
@@ -784,7 +784,7 @@ const fig3Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" 
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 3. VulnTrack Entity-Relationship (ER) Schema &amp; Data Model</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 3. FlawTrack Entity-Relationship (ER) Schema &amp; Data Model</text>
 
   <!-- Entity 1: User -->
   <g transform="translate(50, 70)">
@@ -911,7 +911,7 @@ const fig5Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" 
     </marker>
   </defs>
 
-  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 5. VulnTrack Natural Language Duplicate Detection Processing Pipeline</text>
+  <text x="600" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Fig. 5. FlawTrack Natural Language Duplicate Detection Processing Pipeline</text>
 
   <!-- Step 1: Input Concatenation -->
   <g transform="translate(40, 80)">

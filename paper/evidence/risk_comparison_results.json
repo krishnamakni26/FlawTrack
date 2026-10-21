@@ -9,8 +9,8 @@
     "assetCriticality": 1,
     "environment": "development",
     "internetFacing": false,
-    "vulnTrackScore": 30.7,
-    "vulnTrackPriority": "P2",
+    "flawTrackScore": 30.7,
+    "flawTrackPriority": "P2",
     "overrides": [
       "Floored at P2: CVSS >= 9.0 (Critical theoretical severity)"
     ],
@@ -35,8 +35,8 @@
     "assetCriticality": 5,
     "environment": "production",
     "internetFacing": true,
-    "vulnTrackScore": 87.2,
-    "vulnTrackPriority": "P1",
+    "flawTrackScore": 87.2,
+    "flawTrackPriority": "P1",
     "overrides": [],
     "breakdown": {
       "cvssContribution": 19.5,
@@ -59,8 +59,8 @@
     "assetCriticality": 5,
     "environment": "production",
     "internetFacing": true,
-    "vulnTrackScore": 95.2,
-    "vulnTrackPriority": "P1",
+    "flawTrackScore": 95.2,
+    "flawTrackPriority": "P1",
     "overrides": [],
     "breakdown": {
       "cvssContribution": 26.4,
@@ -83,8 +83,8 @@
     "assetCriticality": 2,
     "environment": "test",
     "internetFacing": false,
-    "vulnTrackScore": 70,
-    "vulnTrackPriority": "P1",
+    "flawTrackScore": 70,
+    "flawTrackPriority": "P1",
     "overrides": [],
     "breakdown": {
       "cvssContribution": 26.4,
@@ -107,8 +107,8 @@
     "assetCriticality": 3,
     "environment": "production",
     "internetFacing": true,
-    "vulnTrackScore": 68.3,
-    "vulnTrackPriority": "P1",
+    "flawTrackScore": 68.3,
+    "flawTrackPriority": "P1",
     "overrides": [
       "Elevated to P1: Active CISA KEV on internet-facing asset"
     ],
@@ -133,8 +133,8 @@
     "assetCriticality": 4,
     "environment": "production",
     "internetFacing": false,
-    "vulnTrackScore": 42.5,
-    "vulnTrackPriority": "P3",
+    "flawTrackScore": 42.5,
+    "flawTrackPriority": "P3",
     "overrides": [],
     "breakdown": {
       "cvssContribution": 23.4,
@@ -157,8 +157,8 @@
     "assetCriticality": 3,
     "environment": "production",
     "internetFacing": true,
-    "vulnTrackScore": 29.2,
-    "vulnTrackPriority": "P4",
+    "flawTrackScore": 29.2,
+    "flawTrackPriority": "P4",
     "overrides": [],
     "breakdown": {
       "cvssContribution": 10.5,

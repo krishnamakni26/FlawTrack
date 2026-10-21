@@ -60,6 +60,15 @@ const blockMutation = function (next) {
   return next(err);
 };
 
+auditLogSchema.pre('save', function (next) {
+  if (!this.isNew) {
+    const err = new Error('Security Violation: AuditLog records are strictly immutable and cannot be updated or deleted.');
+    err.statusCode = 403;
+    return next(err);
+  }
+  next();
+});
+
 auditLogSchema.pre('updateOne', blockMutation);
 auditLogSchema.pre('updateMany', blockMutation);
 auditLogSchema.pre('findOneAndUpdate', blockMutation);
@@ -67,5 +76,6 @@ auditLogSchema.pre('deleteOne', blockMutation);
 auditLogSchema.pre('deleteMany', blockMutation);
 auditLogSchema.pre('findOneAndDelete', blockMutation);
 auditLogSchema.pre('findOneAndRemove', blockMutation);
+auditLogSchema.pre('remove', blockMutation);
 
 module.exports = mongoose.model('AuditLog', auditLogSchema);

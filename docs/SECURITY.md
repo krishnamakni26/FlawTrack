@@ -1,6 +1,6 @@
-# VulnTrack Security Controls & AppSec Architecture
+# FlawTrack Security Controls & AppSec Architecture
 
-As a security product, **VulnTrack** practices defensive engineering across all architectural layers.
+As a security product, **FlawTrack** practices defensive engineering across all architectural layers.
 
 ---
 
@@ -58,10 +58,10 @@ Proof-of-Concept attachments are isolated and secured against remote execution a
 
 ## 6. Dependency Vulnerability Assessment (`npm audit`)
 
-Running `npm audit` on the VulnTrack project yields:
+Running `npm audit` on the FlawTrack project yields:
 - **Total packages analyzed:** 504 dependencies.
 - **Direct vulnerabilities identified:** 3 (2 moderate, 1 high) in transitive dependencies of `node-cron` (`uuid < 11.1.1`) and `nodemailer` (`<=10.0.1`).
 - **Mitigation & Risk Assessment:**
-  1. `nodemailer`: The reported issues relate to interpretation conflicts when parsing legacy RFC 5322 comment syntax and DNS caching across multitenant transports. In VulnTrack, emails are dispatched internally to verified system users with sanitized recipient addresses.
+  1. `nodemailer`: The reported issues relate to interpretation conflicts when parsing legacy RFC 5322 comment syntax and DNS caching across multitenant transports. In FlawTrack, emails are dispatched internally to verified system users with sanitized recipient addresses.
   2. `uuid` in `node-cron`: Relates to buffer bounds checking when supplying custom buffers to v3/v5 UUID generation. `node-cron` does not supply custom buffers.
   3. No critical vulnerabilities exist in the core Express, Mongoose, or JWT frameworks.

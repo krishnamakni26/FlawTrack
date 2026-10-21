@@ -1,6 +1,6 @@
-# VulnTrack Academic Paper — Engineering & Formatting Notes
+# FlawTrack Academic Paper — Engineering & Formatting Notes
 
-This document records the architectural assumptions, design decisions, font selections, and experimental configurations adopted during the authoring of the VulnTrack conference paper.
+This document records the architectural assumptions, design decisions, font selections, and experimental configurations adopted during the authoring of the FlawTrack conference paper.
 
 ---
 
@@ -60,5 +60,5 @@ This document records the architectural assumptions, design decisions, font sele
 
 ## 5. Page Layout and Pagination Budget
 - **Page Budget**: Target 6–8 pages, hard maximum 8 pages.
-- **Final Result**: Exactly 8 pages in `paper/VulnTrack_Paper.pdf`, with balanced columns on page 8.
+- **Final Result**: Exactly 8 pages in `paper/FlawTrack_Paper.pdf`, with balanced columns on page 8.
 - **No Headers or Footers**: All pagination and headers are completely removed in both `.pdf` and `.docx`.

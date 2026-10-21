@@ -72,4 +72,20 @@ describe('SLA Service', () => {
     expect(status.isWarning).toBe(false);
     expect(status.hoursRemaining).toBeLessThan(0);
   });
+
+  test('recalculates SLA dueAt when priority changes', async () => {
+    const baseDate = new Date('2026-01-01T00:00:00.000Z');
+    const vuln = {
+      createdAt: baseDate,
+      sla: {
+        dueAt: new Date('2026-01-08T00:00:00.000Z'), // P3: 168 hours
+        hoursAllowed: 168,
+      },
+    };
+
+    // Escalate to P1 (24h)
+    const newSla = await SlaService.recalculateSlaForNewPriority(vuln, PRIORITIES.P1, mockSettings);
+    expect(newSla.hoursAllowed).toBe(24);
+    expect(new Date(newSla.dueAt).toISOString()).toBe('2026-01-02T00:00:00.000Z');
+  });
 });

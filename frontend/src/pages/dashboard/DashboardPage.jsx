@@ -75,7 +75,8 @@ export const DashboardPage = () => {
   const openVulnerabilities = data.kpis?.openCount ?? data.openVulnerabilities ?? 0;
   const countsByPriority = data.priorityCounts || data.countsByPriority || {};
   const countsByStatus = data.statusCounts || data.countsByStatus || {};
-  const slaCompliance = data.kpis?.slaCompliancePercent ?? data.slaCompliance ?? 100;
+  const rawSla = data.kpis?.slaCompliancePercent ?? data.slaCompliance;
+  const slaCompliance = (rawSla === undefined || rawSla === null || isNaN(Number(rawSla))) ? 100 : Math.round(Number(rawSla));
   const breachedCount = data.kpis?.breachedCount ?? data.breachedCount ?? 0;
   const overdueList = data.overdueList || [];
   const meanTimeToRemediate = data.mttrByPriority || data.meanTimeToRemediate || {};

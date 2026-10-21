@@ -12,10 +12,10 @@ const { ROLES } = require('../config/constants');
 const router = express.Router();
 
 router.use(authenticate);
-router.use(authorizeRoles(ROLES.ADMIN));
 
-router.get('/', UserController.listUsers);
-router.post('/', validate({ body: createUserSchema }), UserController.createUser);
-router.patch('/:id', validate({ body: updateUserSchema }), UserController.updateUser);
+router.get('/assignees', authorizeRoles(ROLES.ADMIN, ROLES.ANALYST, ROLES.DEVELOPER), UserController.listAssignees);
+router.get('/', authorizeRoles(ROLES.ADMIN), UserController.listUsers);
+router.post('/', authorizeRoles(ROLES.ADMIN), validate({ body: createUserSchema }), UserController.createUser);
+router.patch('/:id', authorizeRoles(ROLES.ADMIN), validate({ body: updateUserSchema }), UserController.updateUser);
 
 module.exports = router;

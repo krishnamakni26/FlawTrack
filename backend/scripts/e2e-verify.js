@@ -3,7 +3,7 @@ const axios = require('axios');
 const BASE_URL = 'http://localhost:5000/api/v1';
 
 async function verifyAll() {
-  console.log('--- VULNTRACK LIVE SERVER VERIFICATION ---');
+  console.log('--- FLAWTRACK LIVE SERVER VERIFICATION ---');
 
   // 1. Health check
   const health = await axios.get('http://localhost:5000/health');
@@ -11,7 +11,7 @@ async function verifyAll() {
 
   // 2. Auth Login (Admin)
   const loginRes = await axios.post(`${BASE_URL}/auth/login`, {
-    email: 'admin@vulntrack.local',
+    email: 'admin@flawtrack.local',
     password: 'Password123!',
   });
   const adminToken = loginRes.data.data.accessToken;
@@ -72,7 +72,7 @@ async function verifyAll() {
   console.log(`✓ Audit Log verified: ${auditRes.data.data.length} immutable events recorded.`);
 
   console.log('----------------------------------------------------');
-  console.log('ALL VULNTRACK LIVE SERVER ENGINES FUNCTIONING 100%!');
+  console.log('ALL FLAWTRACK LIVE SERVER ENGINES FUNCTIONING 100%!');
   console.log('----------------------------------------------------');
 }
 
